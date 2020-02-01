@@ -28,7 +28,7 @@ class Player extends Component {
                 return;
         }
 
-        // this.props.handlePlayerMovement(newDirection);
+        this.props.handlePlayerMovement(newDirection);
         console.log(newDirection);
     }
 
