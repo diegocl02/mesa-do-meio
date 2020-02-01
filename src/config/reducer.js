@@ -13,6 +13,10 @@ export const reducer = (state, action) => {
                     ...action.payload
                 }
             }
+        case "UPDATE_CAPTION":
+            return { ...state, caption: action.payload }
+        case "UPDATE_FRIEND":
+            return { ...state, friends: { ...state.friends, [action.payload.key] : action.payload} }
         default:
             return state
     }
