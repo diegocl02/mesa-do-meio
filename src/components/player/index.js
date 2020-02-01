@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { UP, DOWN, LEFT, RIGHT } from '../../helpers/constants'
+import spr_player from './spr_player.png'
 
 class Player extends Component {
     // constructor(props) {
@@ -29,14 +30,20 @@ class Player extends Component {
         }
 
         this.props.handlePlayerMovement(newDirection);
-        console.log(newDirection);
     }
 
     render() {
         return (
-        <div>
-            <img src="https://drive.google.com/open?id=1rZ2FCF5h-XtzsM-5lOrDo25ZETM1xHwn" alt="player"></img>
-        </div>
+            <div
+                style={{
+                    position: "absolute",
+                    top: '5px',
+                    left: '5px',
+                    width: '16px',
+                    height: '16px',
+                    backgroundImage: `url(${spr_player})`
+                }}
+            />
         )
     }
 

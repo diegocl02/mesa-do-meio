@@ -9,7 +9,7 @@ export class Board extends React.Component {
         objects: [{
             sprit: Sprites.Tree,
             x: 0,
-            y: 0
+            y: 2
         }]
     }
     render() {
