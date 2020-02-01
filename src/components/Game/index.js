@@ -55,6 +55,8 @@ function Game(props) {
                 position={props.player.position}
                 handlePlayerMovement={(newDirection) => {
                     let possibleFriend // Check if there is a possible friend close
+
+                    // Check if we find a friend
                     if (possibleFriend = Engine.findCloseFriend(newDirection, Object.keys(props.friends).map(key => props.friends[key]), props.map)){
                         props.updateCaption(possibleFriend.name + ': ' + possibleFriend.text)
                         props.updatePlayer(newDirection)
