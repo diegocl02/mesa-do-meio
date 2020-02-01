@@ -1,24 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {Board} from '../../board'
+import {Board} from '../board'
 import Player from '../player'
 
 function Game(props) {
     return (
         <div
             style={{
-                position: 'relative',
+                display: "flex",
+                flexDirection: "column",
                 width: '600px',
                 height: '600px',
                 margin: '20px auto',
-                background: 'green'
+                alignItems: 'center'
             }}
         >
-            <Player 
+            {/* <Player 
             position={props.player.position} 
             handlePlayerMovement={(newDirection) => props.updatePlayer(newDirection)} 
-            />      
+            /> */}
             <Board></Board>
+            
         </div>
     )
 }
