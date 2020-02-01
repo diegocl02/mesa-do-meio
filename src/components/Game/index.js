@@ -47,13 +47,12 @@ function Game(props) {
                 height: '600px',
                 margin: '20px auto',
                 alignItems: 'center'
-            }}
-        >
+            }}>
             <Player 
                 position={props.player.position} 
                 handlePlayerMovement={(newDirection) => props.updatePlayer(newDirection)} 
             />      
-            <Board objects={objects}></Board>
+            <Board objects={objects} ></Board>
             
         </div>
     )
