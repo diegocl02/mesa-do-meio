@@ -1,7 +1,5 @@
 import React from 'react';
 import './App.css';
-import Test from './test'
-import { connect } from 'react-redux'
 import Game from './components/Game'
 
 

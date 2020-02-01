@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import { UP, DOWN, LEFT, RIGHT } from '../../helpers/constants'
-import spr_player from './spr_player.png'
 
 class Player extends Component {
     getNewPosition(newDirection) {
@@ -43,16 +41,7 @@ class Player extends Component {
     render() {
         //console.log('player', this.props.position)
         return (
-            <div
-                style={{
-                    position: "absolute",
-                    top: '5px',
-                    left: '5px',
-                    width: '16px',
-                    height: '16px',
-                    backgroundImage: `url(${spr_player})`
-                }}
-            />
+            <div/>
         )
     }
 
