@@ -8,33 +8,7 @@ export class Board extends React.Component {
         blockSize: 30,
         width: 20,
         height: 11,
-        objects: [
-            {
-                sprit: Sprites.Tree,
-                x: 0,
-                y: 2
-            },
-            {
-                sprit: Sprites.Tree,
-                x: 0,
-                y: 1
-            },
-            {
-                sprit: Sprites.Tree,
-                x: 1,
-                y: 2
-            },
-            {
-                sprit: Sprites.Tree,
-                x: 13,
-                y: 2
-            },
-            {
-                sprit: Sprites.Tree,
-                x: 14,
-                y: 2
-            },
-        ]
+        objects: []
     }
 
     terrainLayer() {
