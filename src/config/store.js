@@ -4,11 +4,11 @@ import * as GameMap from '../engine/map'
 
 const initialState = {
     player: {
-        position: [0, 0]
+        position: [10, 6]
     },
     map: {
-        position: [0, 0],
-        layout: GameMap.map[0][0]
+        position: [2, 2],
+        layout: GameMap.map[2][2]
     }
 }
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Board } from '../board'
 import { Captions } from '../captions'
 import Player from '../player'
+import Audio from '../audio'
 import * as Sprites from '../sprites'
 import * as Engine from '../../engine/engine'
 import * as GameMap from '../../engine/map'
@@ -41,6 +42,7 @@ function Game(props) {
                 margin: '20px auto',
                 alignItems: 'center'
             }}>
+            <Audio />
             <Player
                 position={props.player.position}
                 handlePlayerMovement={(newDirection) => {
