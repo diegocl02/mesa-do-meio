@@ -26,7 +26,7 @@ function Game(props) {
 function mapDispatchToProps(dispatch) {
     return {
         updatePlayer: (player) => {
-            dispatch({ type: "UPDATE_PLAYER", payload: player })
+            dispatch({ type: "MOVE_PLAYER", payload: player })
         }
     }
   }

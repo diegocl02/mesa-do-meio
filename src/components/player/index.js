@@ -1,35 +1,56 @@
 import React, {Component} from 'react'
 import { UP, DOWN, LEFT, RIGHT } from '../../helpers/constants'
 import spr_player from './spr_player.png'
+import store from '../../config/store'
 
 class Player extends Component {
-    // constructor(props) {
-    //     this.state= {
-    //         direction: newDirection
-    //     }
-    // }
+    getNewPosition(newDirection) {
+        const oldPos = store.getState().player.position
+        switch(newDirection) {
+            case 'RIGHT':
+                return [oldPos[0] - 16, oldPos[1]]
+            case 'LEFT':
+                return [oldPos[0] + 16, oldPos[1]]
+            case 'UP':
+                return [oldPos[0], oldPos[1] - 16]
+            case 'DOWN':
+                return [oldPos[0], oldPos[1] + 16]
+        }
+    }
+
+    dispatchMove(newDirection) {
+
+        store.dispatch({
+            type: 'MOVE_PLAYER',
+            payload: {
+                position: this.getNewPosition(newDirection)
+            }
+        })
+    }
 
     handleKeyDown = (e) => {
+        e.preventDefault()
         let newDirection;
         
         switch(e.keyCode) {
             case 37:
-                newDirection = { top: 0, left: -1 , dir: LEFT};
+                newDirection = ('LEFT');
                 break;
             case 38:
-                newDirection = { top: -1, left: 0 , dir: UP};
+                newDirection = ('UP');
                 break;
             case 39:
-                newDirection = { top: 0, left: 1, dir: RIGHT};
+                newDirection = ('RIGHT')
                 break;
             case 40:
-                newDirection = { top: 1, left: 0, dir: DOWN };
+                newDirection = ('DOWN');
                 break;
             default:
                 return;
         }
 
-        this.props.handlePlayerMovement(newDirection);
+        this.props.handlePlayerMovement();
+        console.log(newDirection)
     }
 
     render() {
