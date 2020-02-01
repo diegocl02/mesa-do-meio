@@ -34,7 +34,24 @@
 
 .board {
   width: 100%;
-  height: 50%;
+  height: 330px;
+}
+
+.captions {
+  width: 100%;
+  height: 70px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.captions-border {
+  width: 91%;
+  background-color: black;
+  color: white;
+  border: thin solid white;
+  padding: 20px;
 }
 
 @keyframes App-logo-spin {

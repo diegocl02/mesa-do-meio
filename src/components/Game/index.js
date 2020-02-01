@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Board } from '../board'
+import { Captions } from '../captions'
 import Player from '../player'
 import * as Sprites from '../sprites'
 import * as Engine from '../../engine/engine'
@@ -57,8 +58,8 @@ function Game(props) {
                     }}
                 }
             />
-            <Board objects={gameObjects} ></Board>
-
+            <Board objects={gameObjects} />
+            <Captions text={"Some cool stuff"}/>
         </div>
     )
 }
