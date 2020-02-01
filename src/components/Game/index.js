@@ -15,8 +15,8 @@ function Game(props) {
             }}
         >
             <Player 
-            position={props.player.position} 
-            handlePlayerMovement={(newDirection) => props.updatePlayer(newDirection)} 
+                position={props.player.position} 
+                handlePlayerMovement={(newDirection) => props.updatePlayer(newDirection)} 
             />      
             <Board></Board>
         </div>

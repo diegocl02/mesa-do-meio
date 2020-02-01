@@ -2,7 +2,9 @@ import { createStore, combineReducers } from 'redux'
 import { reducer } from './reducer'
 
 const initialState = {
-    position: [0, 0]
+    player : {
+        position: [0, 0]
+    }
 }
 
 const store = createStore(

@@ -1,33 +1,21 @@
 import React, {Component} from 'react'
 import { UP, DOWN, LEFT, RIGHT } from '../../helpers/constants'
 import spr_player from './spr_player.png'
-import store from '../../config/store'
 
 class Player extends Component {
     getNewPosition(newDirection) {
-        const oldPos = store.getState().player.position
+        const oldPos = this.props.position
         switch(newDirection) {
             case 'RIGHT':
-                return [oldPos[0] - 16, oldPos[1]]
+                return [oldPos[0] + 1, oldPos[1]]
             case 'LEFT':
-                return [oldPos[0] + 16, oldPos[1]]
+                return [oldPos[0] - 1, oldPos[1]]
             case 'UP':
-                return [oldPos[0], oldPos[1] - 16]
+                return [oldPos[0], oldPos[1] - 1]
             case 'DOWN':
-                return [oldPos[0], oldPos[1] + 16]
+                return [oldPos[0], oldPos[1] + 1]
         }
     }
-
-    dispatchMove(newDirection) {
-
-        store.dispatch({
-            type: 'MOVE_PLAYER',
-            payload: {
-                position: this.getNewPosition(newDirection)
-            }
-        })
-    }
-
     handleKeyDown = (e) => {
         e.preventDefault()
         let newDirection;
@@ -49,11 +37,11 @@ class Player extends Component {
                 return;
         }
 
-        this.props.handlePlayerMovement();
-        console.log(newDirection)
+        this.props.handlePlayerMovement(this.getNewPosition(newDirection));
     }
 
     render() {
+        console.log('player', this.props.position)
         return (
             <div
                 style={{
