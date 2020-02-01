@@ -16,7 +16,7 @@ export class Layer extends React.Component{
         ]
     }
     render() {
-        console.log('safa', this.props)
+        //console.log('props layer', this.props)
         return <div style={{ position: "absolute" }}>
             {
                 Array.from(Array(this.props.height))

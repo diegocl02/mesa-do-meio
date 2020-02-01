@@ -41,7 +41,7 @@ class Player extends Component {
     }
 
     render() {
-        console.log('player', this.props.position)
+        //console.log('player', this.props.position)
         return (
             <div
                 style={{

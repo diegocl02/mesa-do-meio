@@ -6,7 +6,6 @@ import Game from './components/Game'
 
 
 function App(props) {
-  console.log(props)
   return (
     <div className="App">
         <Game />
