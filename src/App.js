@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Test from './test'
 import { connect } from 'react-redux'
+import {Board} from './board'
 
 import Player from "./components/player"
 
@@ -12,6 +13,7 @@ function App(props) {
       {"Just testing..."}
       <Player position={props.player.position} handlePlayerMovement={(newDirection) => props.updatePlayer(newDirection)} />
       {/* <Test></Test> */}
+      <Board></Board>
     </div>
   );
 }
