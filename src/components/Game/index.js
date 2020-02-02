@@ -106,31 +106,31 @@ class Game extends React.Component {
         let caption = props.caption
         if (this.state.gameState == "intro") {
             switch (this.state.introIndex) {
-                case 0: {
+                case 1: {
                     caption = 'I finally have some time off!';
                     break;
                 }
-                case 1: {
+                case 2: {
                     caption = 'I like the city life.'
                     break;
                 }
-                case 2: {
+                case 3: {
                     caption = "But there's nothing like the fresh air!"
                     break;
                 }
-                case 3: {
+                case 4: {
                     caption = 'This place feels like a second home.'
                     break;
                 }
-                case 4: {
+                case 5: {
                     caption = "There's always music in the air."
                     break;
                 }
-                case 5: {
+                case 6: {
                     caption = 'But what we build can sometimes cost the planet.'
                     break;
                 }
-                case 6: {
+                case 7: {
                     caption = 'I will try to restore the sound of nature.'
                     break;
                 }
@@ -168,7 +168,7 @@ class Game extends React.Component {
                                     playerPos: direction
                                 })
                             }
-                            if (this.state.gameState == "intro" && this.state.introIndex >= 0 && this.state.introIndex < 6) {
+                            if (this.state.gameState == "intro" && this.state.introIndex >= 0 && this.state.introIndex < 7) {
                                 if (direction == "RIGHT")
                                     this.setState({
                                         introIndex: this.state.introIndex + 1
@@ -178,7 +178,7 @@ class Game extends React.Component {
                                         introIndex: this.state.introIndex - 1
                                     })
                             }
-                            else if (this.state.gameState == "intro" && this.state.introIndex == 6) {
+                            else if (this.state.gameState == "intro" && this.state.introIndex == 7) {
                                 this.setState({
                                     gameState: "playing"
                                 })

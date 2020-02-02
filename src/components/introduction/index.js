@@ -5,6 +5,8 @@ import scene04 from './img/scene04.png'
 import scene05 from './img/scene05.png'
 import scene06 from './img/scene06.png'
 import scene07 from './img/scene07.png'
+import title from './img/title.png'
+
 
 import React from 'react'
 
@@ -22,6 +24,7 @@ export class Introduction extends React.Component {
     }
     render() {
         const imgs = [
+            title,
             scene01,
             scene02,
             scene03,
