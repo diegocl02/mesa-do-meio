@@ -28,7 +28,7 @@ export class Captions extends React.Component {
             {this.props.text != ""
                 ? this.props.type == "effect"
                     ? <div className={"captions-border"}>
-                        <ReactTypingEffect text={this.props.text} speed={40} typingDelay={200} cursor="" eraseDelay={30000}></ReactTypingEffect>
+                        <ReactTypingEffect text={this.props.text} speed={40} typingDelay={200} cursor="" eraseDelay={5000}></ReactTypingEffect>
                     </div>
                     : <div className={"captions-border"}>
                         {this.props.text}
