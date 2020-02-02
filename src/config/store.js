@@ -22,7 +22,7 @@ const initialState = {
             text: "Don't get too cocky, Star Fox!",
             origin: {
                 map: [2, 2],
-                position: [12, 5]
+                position: [13, 4]
             },
             wasSaved: false
         },
