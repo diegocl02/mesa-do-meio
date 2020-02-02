@@ -14,24 +14,17 @@ export class MiniGame extends React.Component {
         }
     }
     render(){
-        const style0 = {
-            height: "120px",
-            width: "240px",
-            backgroundSize: "240px",
-            backgroundImage: `url(${spr_rabbitB})`,
-            backgroundPosition: `120px 0px`
-        }
-
-        const style1 = {
-            height: "240px",
-            width: "240px",
-            backgroundSize: "240px",
-            backgroundImage: `url(${spr_rabbitB})`,
-            backgroundPosition: `0px 0px`
-        }
+        
         return <div >
-            <div style={{...style0}}></div>
-            <div style={{...style1}}></div>
+            <div style={ this.generateStyle([0,0])}></div>
+            <div style={this.generateStyle([1,0])}></div>
+            <div style={this.generateStyle([2,0])}></div>
+            <div style={this.generateStyle([0,1])}></div>
+            <div style={this.generateStyle([1,1])}></div>
+            <div style={this.generateStyle([2,1])}></div>
+            <div style={this.generateStyle([0,2])}></div>
+            <div style={this.generateStyle([1,2])}></div>
+            <div style={this.generateStyle([2,2])}></div>
         </div>
     }
 }
