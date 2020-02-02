@@ -1,7 +1,15 @@
 import React from 'react'
 import spr_grass from './img/spr_grass.png'
 import spr_tree from './img/spr_tree.png'
+
 import spr_player from './img/spr_player.png'
+import spr_left from './img/spr_left.png'
+import spr_right from './img/spr_right.png'
+import spr_up from './img/spr_up.png'
+
+import spr_dance from './img/spr_dance.png'
+import spr_dance2 from './img/spr_dance2.png'
+
 import spr_beaver from './img/spr_beaver.png'
 import spr_beaver2 from './img/spr_beaver2.png'
 import spr_fox from './img/spr_fox.png'
@@ -31,6 +39,33 @@ export const Tree = (props) => {
 
 export const Player = (props) => {
     return <img src={spr_player} style={{...props.style}}></img>
+}
+
+export const PlayerLeft = (props) => {
+    return <img src={spr_left} style={{...props.style}}></img>
+}
+
+export const PlayerRight = (props) => {
+    return <img src={spr_right} style={{...props.style}}></img>
+}
+
+export const PlayerUp = (props) => {
+    return <img src={spr_up} style={{...props.style}}></img>
+}
+
+export class Dance extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {src: spr_dance}
+    }
+    componentDidMount(){
+        setInterval(() => {
+            this.setState({src: this.state.src === spr_dance ? spr_dance2 : spr_dance})
+        }, 500)
+    }
+    render (){
+        return <img src={this.state.src} style={{...this.props.style}}></img>
+    }
 }
 
 export class Fox extends React.Component{

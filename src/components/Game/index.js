@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Board } from '../board'
 import { Captions } from '../captions'
 import Player from '../player'
+import { Introduction } from '../introduction'
 import {
     Audio,
     RabbitTrack,
@@ -25,7 +26,10 @@ class Game extends React.Component {
         super(props)
         this.state = {
             stopWalkingForLastMessage: true,
-            hasSentLastMessage: false
+            hasSentLastMessage: false,
+            gameState: "intro", // "intro" | "play" | "ending"
+            introIndex: 0,
+            playerPos: "DOWN"
         }
     }
     friendToHome(friend) {
@@ -33,8 +37,7 @@ class Game extends React.Component {
             let posX = this.props.friends[friend.key].position[0]
             let posY = this.props.friends[friend.key].position[1]
 
-            if (posX  >= 0 && posY >= 0 && posY <= this.props.map.layout.length && posX <= this.props.map.layout[0].length)
-            {
+            if (posX >= 0 && posY >= 0 && posY <= this.props.map.layout.length && posX <= this.props.map.layout[0].length) {
                 let pos = Engine.findFriendNextPosition(this.props.friends[friend.key])
                 this.props.updateFriend({
                     ...friend, position: pos
@@ -57,10 +60,20 @@ class Game extends React.Component {
         //             })
         //         }
         //     }))
+        const hasWon = !(Object.keys(props.friends).map(key => props.friends[key])
+            .some(friend => friend.wasSaved == false))
+
+        let spritePlayer = this.state.playerPos == "RIGHT"
+            ? Sprites.PlayerRight
+            : this.state.playerPos == "LEFT"
+                ? Sprites.PlayerLeft
+                : this.state.playerPos == "UP"
+                    ? Sprites.PlayerUp
+                    : Sprites.Player
         const gameObjects = [
             // ...layoutObj,
             {
-                sprit: Sprites.Player,
+                sprit: hasWon ? Sprites.Dance : spritePlayer,
                 x: props.player.position[0],
                 y: props.player.position[1]
             },
@@ -75,8 +88,6 @@ class Game extends React.Component {
                 })
         ]
 
-        const hasWon = !(Object.keys(props.friends).map(key => props.friends[key])
-            .some(friend => friend.wasSaved == false))
         if (hasWon) {
             if (this.state.hasSentLastMessage === false) {
                 setTimeout(() => {
@@ -92,6 +103,39 @@ class Game extends React.Component {
                 this.props.celebrate()
             }, 5000)
         }
+        let caption = props.caption
+        if (this.state.gameState == "intro") {
+            switch (this.state.introIndex) {
+                case 0: {
+                    caption = '1st slide';
+                    break;
+                }
+                case 1: {
+                    caption = '2 slide'
+                    break;
+                }
+                case 2: {
+                    caption = '3 slide'
+                    break;
+                }
+                case 3: {
+                    caption = '4 slide'
+                    break;
+                }
+                case 4: {
+                    caption = '5 slide'
+                    break;
+                }
+                case 5: {
+                    caption = '6 slide'
+                    break;
+                }
+                case 6: {
+                    caption = '7slide'
+                    break;
+                }
+            }
+        }
 
         return (
             <div
@@ -103,6 +147,7 @@ class Game extends React.Component {
                     margin: '20px auto',
                     alignItems: 'center'
                 }}>
+
                 <Audio />
                 {props.friends.rabbit.wasSaved ? <RabbitTrack /> : <Audio />}
                 {props.friends.wolf.wasSaved ? <WolfTrack /> : <Audio />}
@@ -116,8 +161,32 @@ class Game extends React.Component {
                 {hasWon ? <FinalTrack /> : <Audio />}
                 <Player
                     position={props.player.position}
+                    handleKeyPressed={
+                        (direction) => {
+                            if (this.state.gameState == "playing") {
+                                this.setState({
+                                    playerPos: direction
+                                })
+                            }
+                            if (this.state.gameState == "intro" && this.state.introIndex >= 0 && this.state.introIndex < 6) {
+                                if (direction == "RIGHT")
+                                    this.setState({
+                                        introIndex: this.state.introIndex + 1
+                                    })
+                                if (direction == "LEFT" && this.state.introIndex > 0)
+                                    this.setState({
+                                        introIndex: this.state.introIndex - 1
+                                    })
+                            }
+                            else if (this.state.gameState == "intro" && this.state.introIndex == 6) {
+                                this.setState({
+                                    gameState: "playing"
+                                })
+                            }
+                        }
+                    }
                     handlePlayerMovement={(newDirection) => {
-                        if (this.state.stopWalkingForLastMessage) {
+                        if (this.state.gameState == "playing" && this.state.stopWalkingForLastMessage) {
                             let possibleFriendSaved // Check if there is a possible friend close
 
                             // Check if we find a friend
@@ -142,12 +211,22 @@ class Game extends React.Component {
                                 props.updateCaption(0)
                                 props.updatePlayer(newDirection)
                             }
+
                         }
                     }
                     }
                 />
-                <Board objects={gameObjects} mapPosition={props.map.position} />
-                <Captions text={props.caption || ""} friends={props.friends} />
+                {
+                    this.state.gameState == "intro"
+                        ? <Introduction currentSlide={this.state.introIndex} ></Introduction>
+                        : <Board objects={gameObjects} mapPosition={props.map.position} />
+                }
+                <Captions
+                    text={caption || ""}
+                    friends={props.friends}
+                    type={this.state.gameState == "intro"
+                        ? "normal"
+                        : "effect"} />
 
                 {/* Experimental */}
                 <button onClick={() => props.experimental()}> Experimental </button>

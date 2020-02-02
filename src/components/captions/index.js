@@ -16,15 +16,23 @@ import ReactTypingEffect from 'react-typing-effect';
 // }
 
 export class Captions extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
+        this.state = {
+            flag: 1
+        }
     }
-    render(){
+
+    render() {
         return <div className={"captions"}>
             {this.props.text != ""
-                ? <div className={"captions-border"}>
-                   <ReactTypingEffect text={this.props.text} speed={40} typingDelay={200} cursor="" eraseDelay={30000}></ReactTypingEffect>
-                </div>
+                ? this.props.type == "effect"
+                    ? <div className={"captions-border"}>
+                        <ReactTypingEffect text={this.props.text} speed={40} typingDelay={200} cursor="" eraseDelay={30000}></ReactTypingEffect>
+                    </div>
+                    : <div className={"captions-border"}>
+                        {this.props.text}
+                    </div>
                 : <div> {Object.keys(this.props.friends).map(key => this.props.friends[key]).map(friend => {
                     const Sprite = friend.sprit
                     return <Sprite style={{
