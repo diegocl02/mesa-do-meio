@@ -6,6 +6,8 @@ import spr_fox from './img/spr_fox.png'
 import spr_fox2 from './img/spr_fox2.png'
 import spr_rabbit from './img/spr_rabbit.png'
 import spr_rabbit2 from './img/spr_rabbit2.png'
+import spr_raccoon from './img/spr_raccoon.png'
+import spr_raccoon2 from './img/spr_raccoon2.png'
 
 export const Grass = (props) => {
     return <img src={spr_grass} style={{...props.style}}></img>
@@ -48,3 +50,18 @@ export class Rabbit extends React.Component{
         return <img src={this.state.src} style={{...this.props.style}}></img>
     }
 } 
+
+export class Racoon extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {src: spr_raccoon}
+    }
+    componentDidMount(){
+        setInterval(() => {
+            this.setState({src: this.state.src === spr_raccoon ? spr_raccoon2 : spr_raccoon})
+        }, 500)
+    }
+    render (){
+        return <img src={this.state.src} style={{...this.props.style}}></img>
+    }
+}

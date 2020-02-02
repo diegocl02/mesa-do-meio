@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactTypingEffect from 'react-typing-effect';
 
 // friend: {
 //     key: "fox",
@@ -14,16 +15,27 @@ import React from 'react'
 //     wasSaved: false
 // }
 
-export function Captions(props) {
-    return <div className={"captions"}>
-        {props.text != ""
-            ? <div className={"captions-border"}>
-                {props.text}
-            </div>
-            : <div> {Object.keys(props.friends).map(key => props.friends[key]).map(friend => {
-                const Sprite = friend.sprit
-                return <Sprite style={{width: "30px", filter: friend.wasSaved ? 0 : "grayscale(100%)"}}></Sprite>
-            })} </div>
-        }
-    </div>
+export class Captions extends React.Component {
+    constructor(props){
+        super(props)
+    }
+    render(){
+        return <div className={"captions"}>
+            {this.props.text != ""
+                ? <div className={"captions-border"}>
+                   <ReactTypingEffect text={this.props.text} speed={40} typingDelay={200} cursor="" eraseDelay={30000}></ReactTypingEffect>
+                </div>
+                : <div> {Object.keys(this.props.friends).map(key => this.props.friends[key]).map(friend => {
+                    const Sprite = friend.sprit
+                    return <Sprite style={{
+                        width: "30px",
+                        filter: friend.wasSaved
+                            ? 0
+                            : "contrast(0) sepia(100%) hue-rotate(190deg) saturate(2000%) brightness(100%) grayscale(100%)"
+                    }}>
+                    </Sprite>
+                })} </div>
+            }
+        </div>
+    }
 }
