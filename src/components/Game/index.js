@@ -108,31 +108,31 @@ class Game extends React.Component {
         if (this.state.gameState == "intro") {
             switch (this.state.introIndex) {
                 case 0: {
-                    caption = '1st slide';
+                    caption = 'I finally have some time off!';
                     break;
                 }
                 case 1: {
-                    caption = '2 slide'
+                    caption = 'I like the city life.'
                     break;
                 }
                 case 2: {
-                    caption = '3 slide'
+                    caption = "But there's nothing like the fresh air!"
                     break;
                 }
                 case 3: {
-                    caption = '4 slide'
+                    caption = 'This place feels like a second home.'
                     break;
                 }
                 case 4: {
-                    caption = '5 slide'
+                    caption = "There's always music in the air."
                     break;
                 }
                 case 5: {
-                    caption = '6 slide'
+                    caption = 'But what we build can sometimes cost the planet.'
                     break;
                 }
                 case 6: {
-                    caption = '7slide'
+                    caption = 'I will try to restore the sound of nature.'
                     break;
                 }
             }
