@@ -28,7 +28,7 @@ const initialState = {
         },
         rabbit: {
             key: "rabbit",
-            name : "Mr. Rabbit",
+            name : "Pablo Coelho",
             sprit: Sprites.Rabbit,
             position: [12, 5],
             map: [2, 3],
