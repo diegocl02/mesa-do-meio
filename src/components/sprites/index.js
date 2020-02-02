@@ -29,8 +29,14 @@ import spr_squirrel2 from './img/spr_squirrel2.png'
 import spr_wolf from './img/spr_wolf.png'
 import spr_wolf2 from './img/spr_wolf2.png'
 
+import spr_note from './img/spr_note.png'
+
 export const Grass = (props) => {
     return <img src={spr_grass} style={{...props.style}}></img>
+} 
+
+export const Note = (props) => {
+    return <img src={spr_note} style={{...props.style}}></img>
 } 
 
 export const Tree = (props) => {

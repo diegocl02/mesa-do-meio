@@ -6,7 +6,8 @@ import * as Sprites from '../components/sprites'
 const initialState = {
     player: {
         position: [10, 6],
-        friendsSaved: []
+        friendsSaved: [],
+        onMiniGame: false
     },
     map: {
         position: [2, 2],

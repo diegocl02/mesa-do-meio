@@ -62,7 +62,6 @@ class Game extends React.Component {
         //     }))
         const hasWon = !(Object.keys(props.friends).map(key => props.friends[key])
             .some(friend => friend.wasSaved == false))
-
         let spritePlayer = this.state.playerPos == "RIGHT"
             ? Sprites.PlayerRight
             : this.state.playerPos == "LEFT"
@@ -70,13 +69,28 @@ class Game extends React.Component {
                 : this.state.playerPos == "UP"
                     ? Sprites.PlayerUp
                     : Sprites.Player
+
+        let miniGameObj = this.state.friend ? [
+            {
+                sprit: Sprites.Note,
+                x: this.state.friend.position[0] - 1,
+                y: this.state.friend.position[1]
+            },
+            {
+                sprit: Sprites.Note,
+                x: this.state.friend.position[0] + 1,
+                y: this.state.friend.position[1]
+            }
+        ] : []
+
         const gameObjects = [
-            // ...layoutObj,
+            ...miniGameObj,
             {
                 sprit: hasWon ? Sprites.Dance : spritePlayer,
                 x: props.player.position[0],
                 y: props.player.position[1]
             },
+
             ...Object.keys(props.friends).map(key => props.friends[key])
                 .filter(friend => friend.map[0] == props.map.position[0] && friend.map[1] == props.map.position[1])
                 .map(friend => {
@@ -193,6 +207,11 @@ class Game extends React.Component {
                             if (possibleFriendSaved = Engine.findCloseFriend(newDirection, Object.keys(props.friends).map(key => props.friends[key]), props.map)) {
                                 props.updateCaption(possibleFriendSaved.name + ': ' + possibleFriendSaved.text)
                                 props.updatePlayer(newDirection)
+
+                                // Start miniGame
+                                this.setState({ friend: possibleFriendSaved, gameState: "mini-game" })
+
+                                // Save friend
                                 possibleFriendSaved = { ...possibleFriendSaved, wasSaved: true }
                                 props.updateFriend(possibleFriendSaved)
                                 setTimeout(() => this.friendToHome(possibleFriendSaved), 1000)
