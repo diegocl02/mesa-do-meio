@@ -8,6 +8,12 @@ import spr_rabbit from './img/spr_rabbit.png'
 import spr_rabbit2 from './img/spr_rabbit2.png'
 import spr_raccoon from './img/spr_raccoon.png'
 import spr_raccoon2 from './img/spr_raccoon2.png'
+import spr_frog from './img/spr_frog.png'
+import spr_frog2 from './img/spr_frog2.png'
+import spr_owl from './img/spr_owl.png'
+import spr_owl2 from './img/spr_owl2.png'
+import spr_wolf from './img/spr_wolf.png'
+import spr_wolf2 from './img/spr_wolf2.png'
 
 export const Grass = (props) => {
     return <img src={spr_grass} style={{...props.style}}></img>
@@ -59,6 +65,36 @@ export class Racoon extends React.Component{
     componentDidMount(){
         setInterval(() => {
             this.setState({src: this.state.src === spr_raccoon ? spr_raccoon2 : spr_raccoon})
+        }, 500)
+    }
+    render (){
+        return <img src={this.state.src} style={{...this.props.style}}></img>
+    }
+}
+
+export class Frog extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {src: spr_frog}
+    }
+    componentDidMount(){
+        setInterval(() => {
+            this.setState({src: this.state.src === spr_frog ? spr_frog2 : spr_frog})
+        }, 500)
+    }
+    render (){
+        return <img src={this.state.src} style={{...this.props.style}}></img>
+    }
+}
+
+export class Wolf extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {src: spr_wolf}
+    }
+    componentDidMount(){
+        setInterval(() => {
+            this.setState({src: this.state.src === spr_wolf ? spr_wolf2 : spr_wolf})
         }, 500)
     }
     render (){

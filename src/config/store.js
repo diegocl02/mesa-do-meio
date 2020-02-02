@@ -51,6 +51,32 @@ const initialState = {
                 position: [12, 5]
             },
             wasSaved: false
+        },
+        frog: {
+            key: "frog",
+            name : "crazy frog",
+            sprit: Sprites.Frog,
+            position: [15, 5],
+            map: [1, 2],
+            text: "Wh-wha-what's going on-on? Ding, ding, This is the Crazy Frog",
+            origin: {
+                map: [0, 0],
+                position: [12, 5]
+            },
+            wasSaved: false
+        },
+        wolf: {
+            key: "wolf",
+            name : "Remus",
+            sprit: Sprites.Wolf,
+            position: [15, 5],
+            map: [0, 0],
+            text: "The dog ate my homework",
+            origin: {
+                map: [0, 0],
+                position: [12, 5]
+            },
+            wasSaved: false
         }
     }
 }

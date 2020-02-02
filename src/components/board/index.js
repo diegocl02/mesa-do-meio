@@ -2,13 +2,15 @@ import React from 'react'
 import * as Sprites from '../sprites'
 import { Layer } from '../layer'
 import '../../App.css';
+import * as GameMap from '../../engine/map'
 
 export class Board extends React.Component {
     static defaultProps = {
         blockSize: 30,
         width: 20,
         height: 11,
-        objects: []
+        objects: [],
+        mapPosition: [0, 0]
     }
 
     terrainLayer() {
@@ -27,13 +29,23 @@ export class Board extends React.Component {
             }
         </div>
     }
-    
+
+    mapFromPng() {
+        return <div style={{ position: "absolute" }}>
+            <img
+                style={{ width: `${this.props.width * this.props.blockSize}px` }}
+                src={GameMap.mapPng[this.props.mapPosition[1]][this.props.mapPosition[0]]}>
+            </img>
+        </div>
+    }
+
     render() {
         return <div className={"board"}>
             {
                 [
                     this.terrainLayer(),
-                    <Layer {...this.props} ></Layer>
+                    // this.mapFromPng(),
+                    <Layer {...this.props} > </Layer>
                 ]
             }
         </div>

@@ -1,4 +1,15 @@
-export const subMap01 = [
+import fg_sub00 from './img/fg_sub00.png'
+
+export const mapPng = [
+    [fg_sub00, fg_sub00, fg_sub00, fg_sub00, fg_sub00],
+    [fg_sub00, fg_sub00, fg_sub00, fg_sub00, fg_sub00],
+    [fg_sub00, fg_sub00, fg_sub00, fg_sub00, fg_sub00],
+    [fg_sub00, fg_sub00, fg_sub00, fg_sub00, fg_sub00],
+    [fg_sub00, fg_sub00, fg_sub00, fg_sub00, fg_sub00],
+    [fg_sub00, fg_sub00, fg_sub00, fg_sub00, fg_sub00],
+]
+
+export const subMap00 = [
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
@@ -418,11 +429,8 @@ export const subMap30 = [
     [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1]
 ]
 
-
-
-
 export const map = [
-    [subMap01, subMap02, subMap03, subMap04, subMap05],
+    [subMap00, subMap02, subMap03, subMap04, subMap05],
     [subMap06, subMap07, subMap08, subMap09, subMap10],
     [subMap11, subMap12, subMap13, subMap14, subMap15],
     [subMap16, subMap17, subMap18, subMap19, subMap20],
