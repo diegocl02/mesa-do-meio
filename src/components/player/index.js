@@ -34,7 +34,7 @@ class Player extends Component {
             default:
                 return;
         }
-
+        this.props.handleKeyPressed(newDirection)
         this.props.handlePlayerMovement(this.getNewPosition(newDirection));
     }
 
