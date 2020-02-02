@@ -20,6 +20,7 @@ import {
 import * as Sprites from '../sprites'
 import * as Engine from '../../engine/engine'
 import * as GameMap from '../../engine/map'
+import { MiniGame } from '../mini-game'
 
 class Game extends React.Component {
     constructor(props) {
@@ -70,21 +71,7 @@ class Game extends React.Component {
                     ? Sprites.PlayerUp
                     : Sprites.Player
 
-        let miniGameObj = this.state.friend ? [
-            {
-                sprit: Sprites.Note,
-                x: this.state.friend.position[0] - 1,
-                y: this.state.friend.position[1]
-            },
-            {
-                sprit: Sprites.Note,
-                x: this.state.friend.position[0] + 1,
-                y: this.state.friend.position[1]
-            }
-        ] : []
-
         const gameObjects = [
-            ...miniGameObj,
             {
                 sprit: hasWon ? Sprites.Dance : spritePlayer,
                 x: props.player.position[0],
@@ -101,7 +88,6 @@ class Game extends React.Component {
                     }
                 })
         ]
-
         if (hasWon) {
             if (this.state.hasSentLastMessage === false) {
                 setTimeout(() => {
@@ -110,7 +96,6 @@ class Game extends React.Component {
                 }, 5000)
             }
         }
-
         if (this.state.stopWalkingForLastMessage == false) {
             setTimeout(() => {
                 this.setState({ stopWalkingForLastMessage: true })
@@ -173,7 +158,7 @@ class Game extends React.Component {
                 {props.friends.hedgehog.wasSaved ? <HedgehogTrack /> : <Audio />}
                 {props.friends.squirrel.wasSaved ? <SquirrelTrack /> : <Audio />}
                 {hasWon ? <FinalTrack /> : <Audio />}
-                <Player
+                {this.state.gameState !== "mini-game" ? <Player
                     position={props.player.position}
                     handleKeyPressed={
                         (direction) => {
@@ -205,7 +190,7 @@ class Game extends React.Component {
 
                             // Check if we find a friend
                             if (possibleFriendSaved = Engine.findCloseFriend(newDirection, Object.keys(props.friends).map(key => props.friends[key]), props.map)) {
-                                props.updateCaption(possibleFriendSaved.name + ': ' + possibleFriendSaved.text)
+                                props.updateCaption(possibleFriendSaved.name + ': Help me solving the puzzle')
                                 props.updatePlayer(newDirection)
 
                                 // Start miniGame
@@ -232,9 +217,10 @@ class Game extends React.Component {
                             }
 
                         }
-                    }
-                    }
+                    }}
                 />
+                    : null
+                }
                 {
                     this.state.gameState == "intro"
                         ? <Introduction currentSlide={this.state.introIndex} ></Introduction>
@@ -243,12 +229,23 @@ class Game extends React.Component {
                 <Captions
                     text={caption || ""}
                     friends={props.friends}
-                    type={this.state.gameState == "intro"
-                        ? "normal"
-                        : "effect"} />
+                    type={"normal"} />
 
                 {/* Experimental */}
-                <button onClick={() => props.experimental()}> Experimental </button>
+
+                {
+                    this.state.gameState == "mini-game"
+                        ? <div style={{ position: "absolute", top: "60px" }}>
+                            <MiniGame friend={this.state.friend} win={() => {
+                                let possibleFriendSaved = { ...this.state.friend, wasSaved: true }
+                                props.updateFriend(possibleFriendSaved)
+                                props.updateCaption(possibleFriendSaved.name + ': ' + possibleFriendSaved.text)
+                                setTimeout(() => this.setState({ gameState: "playing" }), 1000)
+                                setTimeout(() => this.friendToHome(possibleFriendSaved), 2000)
+                            }}></MiniGame>
+                        </div>
+                        : null
+                }
             </div>
         )
     }

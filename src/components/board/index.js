@@ -29,7 +29,6 @@ export class Board extends React.Component {
             }
         </div>
     }
-
     mapFromPng() {
         return <div style={{ position: "absolute" }}>
             <img
@@ -38,7 +37,6 @@ export class Board extends React.Component {
             </img>
         </div>
     }
-
     render() {
         return <div className={"board"}>
             {

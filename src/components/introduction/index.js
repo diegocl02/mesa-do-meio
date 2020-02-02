@@ -19,14 +19,6 @@ export class Introduction extends React.Component {
         currenSlide: 0
     }
     componentDidMount() {
-        // const timer = setInterval(() => {
-        //     if (this.state.current > 6)
-        //         clearInterval(timer)
-        //     else
-        //         this.setState({
-        //             current: this.state.current + 1
-        //         })
-        // }, 5000)
     }
     render() {
         const imgs = [

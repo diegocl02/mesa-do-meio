@@ -2,6 +2,16 @@ import { createStore } from 'redux'
 import { reducer } from './reducer'
 import * as GameMap from '../engine/map'
 import * as Sprites from '../components/sprites'
+import spr_rabbitB from '../components/mini-game/img/spr_rabbitB.png'
+import spr_foxB from '../components/mini-game/img/spr_foxB.png'
+import spr_racoonB from '../components/mini-game/img/spr_raccoonB.png'
+import spr_frogB from '../components/mini-game/img/spr_frogB.png'
+import spr_wolfB from '../components/mini-game/img/spr_wolfB.png'
+import spr_owlB from '../components/mini-game/img/spr_owlB.png'
+import spr_hedgehogB from '../components/mini-game/img/spr_hedgehogB.png'
+import spr_squirrelB from '../components/mini-game/img/spr_squirrelB.png'
+
+
 
 const initialState = {
     player: {
@@ -25,7 +35,8 @@ const initialState = {
                 map: [2, 2],
                 position: [13, 4]
             },
-            wasSaved: false
+            wasSaved: false,
+            src: spr_foxB
         },
         rabbit: {
             key: "rabbit",
@@ -38,7 +49,8 @@ const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: false
+            wasSaved: false,
+            src: spr_rabbitB
         },
         racoon: {
             key: "racoon",
@@ -51,7 +63,8 @@ const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: false
+            wasSaved: false,
+            src: spr_racoonB
         },
         frog: {
             key: "frog",
@@ -64,7 +77,8 @@ const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: false
+            wasSaved: false,
+            src: spr_frogB
         },
         wolf: {
             key: "wolf",
@@ -77,7 +91,8 @@ const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: false
+            wasSaved: false,
+            src: spr_wolfB
         },
         owl: {
             key: "owl",
@@ -90,7 +105,8 @@ const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: false
+            wasSaved: false,
+            src: spr_owlB
         },
         beaver: {
             key: "beaver",
@@ -103,7 +119,8 @@ const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: false
+            wasSaved: false,
+            src: spr_racoonB
         },
         hedgehog: {
             key: "hedgehog",
@@ -116,7 +133,8 @@ const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: false
+            wasSaved: false,
+            src: spr_hedgehogB
         },
         squirrel: {
             key: "squirrel",
@@ -129,7 +147,8 @@ const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: false
+            wasSaved: false,
+            src: spr_squirrelB
         }
     }
 }
