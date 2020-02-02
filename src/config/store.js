@@ -10,8 +10,7 @@ import spr_wolfB from '../components/mini-game/img/spr_wolfB.png'
 import spr_owlB from '../components/mini-game/img/spr_owlB.png'
 import spr_hedgehogB from '../components/mini-game/img/spr_hedgehogB.png'
 import spr_squirrelB from '../components/mini-game/img/spr_squirrelB.png'
-
-
+import spr_beaverB from '../components/mini-game/img/spr_beaverB.png'
 
 const initialState = {
     player: {
@@ -120,7 +119,7 @@ const initialState = {
                 position: [12, 5]
             },
             wasSaved: false,
-            src: spr_racoonB
+            src: spr_beaverB
         },
         hedgehog: {
             key: "hedgehog",
