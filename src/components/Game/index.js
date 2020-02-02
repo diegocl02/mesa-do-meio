@@ -28,6 +28,22 @@ class Game extends React.Component {
             hasSentLastMessage: false
         }
     }
+    friendToHome(friend) {
+        let friendInt = setInterval(() => {
+            let posX = this.props.friends[friend.key].position[0]
+            let posY = this.props.friends[friend.key].position[1]
+
+            if (posX  >= 0 && posY >= 0 && posY <= this.props.map.layout.length && posX <= this.props.map.layout[0].length)
+            {
+                let pos = Engine.findFriendNextPosition(this.props.friends[friend.key])
+                this.props.updateFriend({
+                    ...friend, position: pos
+                })
+            }
+            else
+                clearTimeout(friendInt)
+        }, 700)
+    }
     render() {
         const props = this.props
         // const layoutObj = []
@@ -102,13 +118,15 @@ class Game extends React.Component {
                     position={props.player.position}
                     handlePlayerMovement={(newDirection) => {
                         if (this.state.stopWalkingForLastMessage) {
-                            let possibleFriend // Check if there is a possible friend close
+                            let possibleFriendSaved // Check if there is a possible friend close
 
                             // Check if we find a friend
-                            if (possibleFriend = Engine.findCloseFriend(newDirection, Object.keys(props.friends).map(key => props.friends[key]), props.map)) {
-                                props.updateCaption(possibleFriend.name + ': ' + possibleFriend.text)
+                            if (possibleFriendSaved = Engine.findCloseFriend(newDirection, Object.keys(props.friends).map(key => props.friends[key]), props.map)) {
+                                props.updateCaption(possibleFriendSaved.name + ': ' + possibleFriendSaved.text)
                                 props.updatePlayer(newDirection)
-                                props.updateFriend({ ...possibleFriend, wasSaved: true })
+                                possibleFriendSaved = { ...possibleFriendSaved, wasSaved: true }
+                                props.updateFriend(possibleFriendSaved)
+                                setTimeout(() => this.friendToHome(possibleFriendSaved), 1000)
                             }
                             else if (Engine.isChangeNewMap(newDirection, props.map.layout, GameMap.map, props.map.position)) {
                                 const newMapPos = Engine.getNewMapPos(newDirection, props.map.layout, GameMap.map, props.map.position)
@@ -130,7 +148,7 @@ class Game extends React.Component {
                 />
                 <Board objects={gameObjects} mapPosition={props.map.position} />
                 <Captions text={props.caption || ""} friends={props.friends} />
-                
+
                 {/* Experimental */}
                 <button onClick={() => props.experimental()}> Experimental </button>
             </div>

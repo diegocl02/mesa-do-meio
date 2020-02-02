@@ -1,3 +1,5 @@
+import * as GameMap from './map'
+
 const findFriends = (map, friends) => {
     return (friends.filter((el) => el.map[0] == map.position[0] && el.map[1] == map.position[1]))
 }
@@ -85,9 +87,60 @@ const checkProximity = (posA, posB) => {
 export const findCloseFriend = (position, friends, map) => {
     let friend
     if (friend = friends.find((el) => el.map[0] == map.position[0] && el.map[1] == map.position[1])) {
-        if (checkProximity(position, friend.position))
+        if (checkProximity(position, friend.position) && friend.wasSaved == false)
             return friend
     }
     else
         return false
+}
+
+export const findFirstExit = (layout) => {
+    if (layout[0].some(el => el == 0))
+        return "NORTH"
+    if (layout[layout.length - 1].some(el => el == 0))
+        return "SOUTH"
+    if (layout.map(el => el[0]).some(el => el == 0))
+        return "WEST"
+    else
+        return "EAST"
+}
+
+export const findFriendNextPosition = (friend) => {
+    let xPos = friend.position[0]
+    let yPos = friend.position[1]
+    let layout = GameMap.map[friend.map[1]][friend.map[0]]
+    let closeExit = findFirstExit(layout)
+
+    if (closeExit == "NORTH") {
+        if (xPos < Math.floor(layout[0].length / 2)- 1)
+            return [xPos + 1, yPos - 1]
+        if (xPos > Math.floor(layout[0].length / 2) - 1)
+            return [xPos - 1, yPos - 1]
+        else
+            return [xPos, yPos - 1]
+    }
+    if (closeExit == "SOUTH") {
+        if (xPos < Math.floor(layout[0].length / 2) - 1 )
+            return [xPos + 1, yPos + 1]
+        if (xPos > Math.floor(layout[0].length / 2) - 1)
+            return [xPos - 1, yPos + 1]
+        else
+            return [xPos, yPos + 1]
+    }
+    if (closeExit == "WEST") {
+        if (yPos < Math.floor(layout.length / 2) - 1 )
+            return [xPos - 1, yPos + 1]
+        if (xPos > Math.floor(layout.length / 2) - 1)
+            return [xPos - 1, yPos - 1]
+        else
+            return [xPos - 1, yPos]
+    }
+    else {
+        if (yPos < Math.floor(layout.length / 2) - 1 )
+            return [xPos + 1, yPos + 1]
+        if (xPos > Math.floor(layout.length / 2) - 1)
+            return [xPos + 1, yPos - 1]
+        else
+            return [xPos + 1, yPos]
+    }
 }
