@@ -1,3 +1,5 @@
+import * as GameMap from '../engine/map'
+
 export const reducer = (state, action) => {
     switch (action.type) {
         case "MOVE_PLAYER":
@@ -34,6 +36,14 @@ export const reducer = (state, action) => {
             })
             return {
                 ...state,
+                player: {
+                    position: [9, 5],
+                    friendsSaved: []
+                },
+                map: {
+                    position: [2, 2],
+                    layout: GameMap.map[2][2]
+                },
                 friends: newFriends
             }
         }
