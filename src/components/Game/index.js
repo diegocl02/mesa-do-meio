@@ -3,13 +3,20 @@ import { connect } from 'react-redux'
 import { Board } from '../board'
 import { Captions } from '../captions'
 import Player from '../player'
-import Audio from '../audio'
+import { 
+    Audio, 
+    RabbitTrack, 
+    FrogTrack, 
+    WolfTrack, 
+    RacoonTrack, 
+    FoxTrack, 
+    FinalTrack 
+} from '../audio'
 import * as Sprites from '../sprites'
 import * as Engine from '../../engine/engine'
 import * as GameMap from '../../engine/map'
 
 class Game extends React.Component {
-    //console.log('Game this.props', props)
     constructor(props) {
         super(props)
         this.state = {
@@ -77,6 +84,12 @@ class Game extends React.Component {
                     alignItems: 'center'
                 }}>
                 <Audio />
+                {props.friends.rabbit.wasSaved ? <RabbitTrack /> : <Audio />}
+                {props.friends.wolf.wasSaved ? <WolfTrack /> : <Audio />}
+                {props.friends.frog.wasSaved ? <FrogTrack /> : <Audio />}
+                {props.friends.fox.wasSaved ? <FoxTrack /> : <Audio />}
+                {props.friends.racoon.wasSaved ? <RacoonTrack /> : <Audio />}
+                {hasWon ? <FinalTrack /> : <Audio />}
                 <Player
                     position={props.player.position}
                     handlePlayerMovement={(newDirection) => {
