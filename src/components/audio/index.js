@@ -150,7 +150,9 @@ export class SquirrelTrack extends React.Component{
 export class FinalTrack extends React.Component{    
     componentDidMount(){
       const final_track = document.getElementsByClassName("final-track")[0]
-      final_track.play()
+      setTimeout(function() {
+          final_track.play()
+        }, 4000)
     }
 
     render (){
