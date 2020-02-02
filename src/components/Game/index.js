@@ -9,7 +9,11 @@ import {
     FrogTrack, 
     WolfTrack, 
     RacoonTrack, 
-    FoxTrack, 
+    FoxTrack,
+    OwlTrack, 
+    BeaverTrack,
+    HedgehogTrack,
+    SquirrelTrack,
     FinalTrack 
 } from '../audio'
 import * as Sprites from '../sprites'
@@ -89,6 +93,10 @@ class Game extends React.Component {
                 {props.friends.frog.wasSaved ? <FrogTrack /> : <Audio />}
                 {props.friends.fox.wasSaved ? <FoxTrack /> : <Audio />}
                 {props.friends.racoon.wasSaved ? <RacoonTrack /> : <Audio />}
+                {props.friends.owl.wasSaved ? <OwlTrack /> : <Audio />}
+                {props.friends.beaver.wasSaved ? <BeaverTrack /> : <Audio />}
+                {props.friends.hedgehog.wasSaved ? <HedgehogTrack /> : <Audio />}
+                {props.friends.squirrel.wasSaved ? <SquirrelTrack /> : <Audio />}
                 {hasWon ? <FinalTrack /> : <Audio />}
                 <Player
                     position={props.player.position}

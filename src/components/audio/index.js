@@ -6,6 +6,7 @@
  import flute_bird from './tracks/flute_bird.mp3'
  import keys_racoon from './tracks/keys_racoon.mp3'
  import percussion_rabbit from './tracks/percussion_rabbit.mp3'
+ import picapau from './tracks/picapau.mp3'
  import synth_squirrel from './tracks/synth_squirrel.mp3'
  import synthbass_frog from './tracks/synthbass_frog.mp3'
  import trumpet_beaver from './tracks/trumpet_beaver.mp3'
@@ -90,6 +91,58 @@ export class FoxTrack extends React.Component{
     render (){
         return (
           <audio className="fox"><source src={acoustic_fox} /></audio>
+          )
+    }
+}
+
+export class OwlTrack extends React.Component{    
+    componentDidMount(){
+      const owl_track = document.getElementsByClassName("owl")[0]
+      owl_track.play()
+    }
+
+    render (){
+        return (
+          <audio className="owl"><source src={bass_owl} /></audio>
+          )
+    }
+}
+
+export class BeaverTrack extends React.Component{    
+    componentDidMount(){
+      const beaver_track = document.getElementsByClassName("beaver")[0]
+      beaver_track.play()
+    }
+
+    render (){
+        return (
+          <audio className="beaver"><source src={trumpet_beaver} /></audio>
+          )
+    }
+}
+
+export class HedgehogTrack extends React.Component{    
+    componentDidMount(){
+      const hedgehog_track = document.getElementsByClassName("hedgehog")[0]
+      hedgehog_track.play()
+    }
+
+    render (){
+        return (
+          <audio className="hedgehog"><source src={picapau} /></audio>
+          )
+    }
+}
+
+export class SquirrelTrack extends React.Component{    
+    componentDidMount(){
+      const squirrel_track = document.getElementsByClassName("squirrel")[0]
+      squirrel_track.play()
+    }
+
+    render (){
+        return (
+          <audio className="squirrel"><source src={synth_squirrel} /></audio>
           )
     }
 }

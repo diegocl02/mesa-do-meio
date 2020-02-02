@@ -77,6 +77,58 @@ const initialState = {
                 position: [12, 5]
             },
             wasSaved: false
+        },
+        owl: {
+            key: "owl",
+            name : "Jano",
+            sprit: Sprites.Owl,
+            position: [10, 6],
+            map: [4, 0],
+            text: "I brought you a song, or maybe a letter from h...",
+            origin: {
+                map: [0, 0],
+                position: [12, 5]
+            },
+            wasSaved: false
+        },
+        beaver: {
+            key: "beaver",
+            name : "Sneaky",
+            sprit: Sprites.Beaver,
+            position: [10, 3],
+            map: [1, 1],
+            text: "I miss my dam... and my river... sadboy cry:((",
+            origin: {
+                map: [0, 0],
+                position: [12, 5]
+            },
+            wasSaved: false
+        },
+        hedgehog: {
+            key: "hedgehog",
+            name : "Sonic",
+            sprit: Sprites.Hedgehog,
+            position: [15, 6],
+            map: [3, 0],
+            text: "Gotta go fast",
+            origin: {
+                map: [0, 0],
+                position: [12, 5]
+            },
+            wasSaved: false
+        },
+        squirrel: {
+            key: "squirrel",
+            name : "Alvim",
+            sprit: Sprites.Squirrel,
+            position: [10, 6],
+            map: [0, 3],
+            text: "I'm the guy to bring you some music, did you know I had a band?",
+            origin: {
+                map: [0, 0],
+                position: [12, 5]
+            },
+            wasSaved: false
         }
     }
 }

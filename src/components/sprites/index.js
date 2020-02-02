@@ -2,8 +2,12 @@ import React from 'react'
 import spr_grass from './img/spr_grass.png'
 import spr_tree from './img/spr_tree.png'
 import spr_player from './img/spr_player.png'
+import spr_beaver from './img/spr_beaver.png'
+import spr_beaver2 from './img/spr_beaver2.png'
 import spr_fox from './img/spr_fox.png'
 import spr_fox2 from './img/spr_fox2.png'
+import spr_hedgehog from './img/spr_hedgehog.png'
+import spr_hedgehog2 from './img/spr_hedgehog2.png'
 import spr_rabbit from './img/spr_rabbit.png'
 import spr_rabbit2 from './img/spr_rabbit2.png'
 import spr_raccoon from './img/spr_raccoon.png'
@@ -12,6 +16,8 @@ import spr_frog from './img/spr_frog.png'
 import spr_frog2 from './img/spr_frog2.png'
 import spr_owl from './img/spr_owl.png'
 import spr_owl2 from './img/spr_owl2.png'
+import spr_squirrel from './img/spr_squirrel.png'
+import spr_squirrel2 from './img/spr_squirrel2.png'
 import spr_wolf from './img/spr_wolf.png'
 import spr_wolf2 from './img/spr_wolf2.png'
 
@@ -95,6 +101,66 @@ export class Wolf extends React.Component{
     componentDidMount(){
         setInterval(() => {
             this.setState({src: this.state.src === spr_wolf ? spr_wolf2 : spr_wolf})
+        }, 500)
+    }
+    render (){
+        return <img src={this.state.src} style={{...this.props.style}}></img>
+    }
+}
+
+export class Owl extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {src: spr_owl}
+    }
+    componentDidMount(){
+        setInterval(() => {
+            this.setState({src: this.state.src === spr_owl ? spr_owl2 : spr_owl})
+        }, 500)
+    }
+    render (){
+        return <img src={this.state.src} style={{...this.props.style}}></img>
+    }
+}
+
+export class Beaver extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {src: spr_beaver}
+    }
+    componentDidMount(){
+        setInterval(() => {
+            this.setState({src: this.state.src === spr_beaver ? spr_beaver2 : spr_beaver})
+        }, 500)
+    }
+    render (){
+        return <img src={this.state.src} style={{...this.props.style}}></img>
+    }
+}
+
+export class Hedgehog extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {src: spr_hedgehog}
+    }
+    componentDidMount(){
+        setInterval(() => {
+            this.setState({src: this.state.src === spr_hedgehog ? spr_hedgehog2 : spr_hedgehog})
+        }, 500)
+    }
+    render (){
+        return <img src={this.state.src} style={{...this.props.style}}></img>
+    }
+}
+
+export class Squirrel extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {src: spr_squirrel}
+    }
+    componentDidMount(){
+        setInterval(() => {
+            this.setState({src: this.state.src === spr_squirrel ? spr_squirrel2 : spr_squirrel})
         }, 500)
     }
     render (){
