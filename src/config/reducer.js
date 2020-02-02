@@ -20,21 +20,38 @@ export const reducer = (state, action) => {
         case "CELEBRATE":
         {
             let newFriends = {}
-            let xIndex = 5
+            let xIndex = 6
+            let yIndex = 6
 
             Object.keys(state.friends).forEach(key => {
                 newFriends[key] = {
                     ...state.friends[key], 
-                    position: [xIndex, 5],
+                    position: [xIndex, yIndex],
                     map: [2, 2]
                 }
-                xIndex += 2
+                yIndex = xIndex > 13 ? yIndex + 2 : yIndex
+                xIndex = xIndex > 13 ? 6 : xIndex + 2
             })
             return {
                 ...state,
                 friends: newFriends
             }
         }
+        case "EXPERIMENTAL":
+            {
+                let newFriends = {}
+    
+                Object.keys(state.friends).forEach(key => {
+                    newFriends[key] = {
+                        ...state.friends[key],
+                        wasSaved: true
+                    }
+                })
+                return {
+                    ...state,
+                    friends: newFriends
+                }
+            }
         default:
             return state
     }
