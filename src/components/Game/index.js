@@ -7,6 +7,7 @@ import Audio from '../audio'
 import * as Sprites from '../sprites'
 import * as Engine from '../../engine/engine'
 import * as GameMap from '../../engine/map'
+import { MiniGame } from '../mini-game'
 
 class Game extends React.Component {
     //console.log('Game this.props', props)
@@ -47,7 +48,6 @@ class Game extends React.Component {
                     }
                 })
         ]
-
         const hasWon = !(Object.keys(props.friends).map(key => props.friends[key])
             .some(friend => friend.wasSaved == false))
         if (hasWon) {
@@ -58,7 +58,6 @@ class Game extends React.Component {
                 }, 5000)
             }
         }
-
         if (this.state.stopWalkingForLastMessage == false) {
             setTimeout(() => { 
                 this.setState({ stopWalkingForLastMessage: true })
@@ -104,11 +103,11 @@ class Game extends React.Component {
                                 props.updatePlayer(newDirection)
                             }
                         }
-                    }
-                    }
+                    }}
                 />
-                <Board objects={gameObjects} />
-                <Captions text={props.caption || ""} friends={props.friends} />
+                {/* <Board objects={gameObjects} /> */}
+                {/* <Captions text={props.caption || ""} friends={props.friends} /> */}
+                <MiniGame></MiniGame>
             </div>
         )
     }
