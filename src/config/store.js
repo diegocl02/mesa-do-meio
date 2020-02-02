@@ -71,7 +71,7 @@ const initialState = {
             sprit: Sprites.Wolf,
             position: [15, 5],
             map: [0, 0],
-            text: "The dog ate my homework",
+            text: "The dog ate my sheet music...",
             origin: {
                 map: [0, 0],
                 position: [12, 5]
@@ -106,11 +106,11 @@ const initialState = {
         },
         hedgehog: {
             key: "hedgehog",
-            name : "Sonic",
+            name : "Sunic",
             sprit: Sprites.Hedgehog,
             position: [15, 6],
             map: [3, 0],
-            text: "Gotta go fast",
+            text: "Gotta go fast!",
             origin: {
                 map: [0, 0],
                 position: [12, 5]
@@ -123,7 +123,7 @@ const initialState = {
             sprit: Sprites.Squirrel,
             position: [10, 6],
             map: [0, 3],
-            text: "I'm the guy to bring you some music, did you know I had a band?",
+            text: "I'm the guy to bring you some music! Did you know I had a band?",
             origin: {
                 map: [0, 0],
                 position: [12, 5]

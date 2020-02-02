@@ -10,18 +10,32 @@
  import synth_squirrel from './tracks/synth_squirrel.mp3'
  import synthbass_frog from './tracks/synthbass_frog.mp3'
  import trumpet_beaver from './tracks/trumpet_beaver.mp3'
- import final_track from './tracks/final_track.wav'
+ import together from './tracks/together.mp3'
+ import final_track from './tracks/final_track.mp3'
+
+export class Intro extends React.Component {
+  componentDidMount() {
+    const sound = document.getElementById("intro")
+  }
+
+  render() {
+    return (
+        <audio id="intro" autoPlay>
+          <source src={final_track} />
+        </audio>
+    )
+  }
+}
  
 export class Audio extends React.Component {
   componentDidMount() {
-    const audioEl = document.getElementsByClassName("audio-element")[0]
-    audioEl.play()
+    const ambience = document.getElementById("audio-element")
   }
  
   render() {
     return (
       <div>
-        <audio className="audio-element" autoPlay loop>
+        <audio id="audio-element" autoPlay loop>
           <source src={ambience_forest} />
         </audio>
       </div>
@@ -157,7 +171,7 @@ export class FinalTrack extends React.Component{
 
     render (){
         return (
-          <audio className="final-track"><source src={final_track} /></audio>
+          <audio className="final-track"><source src={together} /></audio>
           )
     }
 } 
