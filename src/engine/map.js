@@ -1,12 +1,41 @@
 import fg_sub00 from './img/fg_sub00.png'
+import fg_sub01 from './img/fg_sub01.png'
+import fg_sub02 from './img/fg_sub02.png'
+import fg_sub03 from './img/fg_sub03.png'
+import fg_sub04 from './img/fg_sub04.png'
+import fg_sub05 from './img/fg_sub05.png'
+import fg_sub10 from './img/fg_sub10.png'
+import fg_sub11 from './img/fg_sub11.png'
+import fg_sub12 from './img/fg_sub12.png'
+import fg_sub13 from './img/fg_sub13.png'
+import fg_sub14 from './img/fg_sub14.png'
+import fg_sub15 from './img/fg_sub15.png'
+import fg_sub20 from './img/fg_sub20.png'
+import fg_sub21 from './img/fg_sub21.png'
+import fg_sub22 from './img/fg_sub22.png'
+import fg_sub23 from './img/fg_sub23.png'
+import fg_sub24 from './img/fg_sub24.png'
+import fg_sub25 from './img/fg_sub25.png'
+import fg_sub30 from './img/fg_sub30.png'
+import fg_sub31 from './img/fg_sub31.png'
+import fg_sub32 from './img/fg_sub32.png'
+import fg_sub33 from './img/fg_sub33.png'
+import fg_sub34 from './img/fg_sub34.png'
+import fg_sub35 from './img/fg_sub35.png'
+import fg_sub40 from './img/fg_sub40.png'
+import fg_sub41 from './img/fg_sub41.png'
+import fg_sub42 from './img/fg_sub42.png'
+import fg_sub43 from './img/fg_sub43.png'
+import fg_sub44 from './img/fg_sub44.png'
+import fg_sub45 from './img/fg_sub45.png'
 
 export const mapPng = [
-    [fg_sub00, fg_sub00, fg_sub00, fg_sub00, fg_sub00],
-    [fg_sub00, fg_sub00, fg_sub00, fg_sub00, fg_sub00],
-    [fg_sub00, fg_sub00, fg_sub00, fg_sub00, fg_sub00],
-    [fg_sub00, fg_sub00, fg_sub00, fg_sub00, fg_sub00],
-    [fg_sub00, fg_sub00, fg_sub00, fg_sub00, fg_sub00],
-    [fg_sub00, fg_sub00, fg_sub00, fg_sub00, fg_sub00],
+    [fg_sub00, fg_sub10, fg_sub20, fg_sub30, fg_sub40],
+    [fg_sub01, fg_sub11, fg_sub21, fg_sub31, fg_sub41],
+    [fg_sub02, fg_sub12, fg_sub22, fg_sub32, fg_sub42],
+    [fg_sub03, fg_sub13, fg_sub23, fg_sub33, fg_sub43],
+    [fg_sub04, fg_sub14, fg_sub24, fg_sub34, fg_sub44],
+    [fg_sub05, fg_sub15, fg_sub25, fg_sub35, fg_sub45],
 ]
 
 export const subMap00 = [

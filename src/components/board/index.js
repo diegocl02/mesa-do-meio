@@ -44,7 +44,7 @@ export class Board extends React.Component {
             {
                 [
                     this.terrainLayer(),
-                    // this.mapFromPng(),
+                    this.mapFromPng(),
                     <Layer {...this.props} > </Layer>
                 ]
             }

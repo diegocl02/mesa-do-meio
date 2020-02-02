@@ -30,19 +30,19 @@ class Game extends React.Component {
     }
     render() {
         const props = this.props
-        const layoutObj = []
-        props.map.layout
-            .map((row, y) => row.map((cell, x) => {
-                if (cell == 1) {
-                    layoutObj.push({
-                        sprit: Sprites.Tree,
-                        x: x,
-                        y: y
-                    })
-                }
-            }))
+        // const layoutObj = []
+        // props.map.layout
+        //     .map((row, y) => row.map((cell, x) => {
+        //         if (cell == 1) {
+        //             layoutObj.push({
+        //                 sprit: Sprites.Tree,
+        //                 x: x,
+        //                 y: y
+        //             })
+        //         }
+        //     }))
         const gameObjects = [
-            ...layoutObj,
+            // ...layoutObj,
             {
                 sprit: Sprites.Player,
                 x: props.player.position[0],
@@ -128,7 +128,7 @@ class Game extends React.Component {
                     }
                     }
                 />
-                <Board objects={gameObjects} />
+                <Board objects={gameObjects} mapPosition={props.map.position}/>
                 <Captions text={props.caption || ""} friends={props.friends} />
             </div>
         )
