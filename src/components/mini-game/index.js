@@ -8,14 +8,13 @@ export class MiniGame extends React.Component {
             current: [0, 0],
             isSelected: false,
             mapa: [
-                [0, 1, 2],
-                [3, 4, 5],
-                [7, 6, 8]
+                [0, 2, 1],
+                [4, 3, 8],
+                [7, 6, 5]
             ],
             win: false
         }
     }
-
     static defaultProps = {
         src: spr_rabbitB
     }

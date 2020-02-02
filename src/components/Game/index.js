@@ -196,11 +196,6 @@ class Game extends React.Component {
 
                                 // Start miniGame
                                 this.setState({ friend: possibleFriendSaved, gameState: "mini-game" })
-
-                                // Save friend
-                                possibleFriendSaved = { ...possibleFriendSaved, wasSaved: true }
-                                props.updateFriend(possibleFriendSaved)
-                                setTimeout(() => this.friendToHome(possibleFriendSaved), 1000)
                             }
                             else if (Engine.isChangeNewMap(newDirection, props.map.layout, GameMap.map, props.map.position)) {
                                 const newMapPos = Engine.getNewMapPos(newDirection, props.map.layout, GameMap.map, props.map.position)
