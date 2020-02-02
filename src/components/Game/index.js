@@ -3,18 +3,18 @@ import { connect } from 'react-redux'
 import { Board } from '../board'
 import { Captions } from '../captions'
 import Player from '../player'
-import { 
-    Audio, 
-    RabbitTrack, 
-    FrogTrack, 
-    WolfTrack, 
-    RacoonTrack, 
+import {
+    Audio,
+    RabbitTrack,
+    FrogTrack,
+    WolfTrack,
+    RacoonTrack,
     FoxTrack,
-    OwlTrack, 
+    OwlTrack,
     BeaverTrack,
     HedgehogTrack,
     SquirrelTrack,
-    FinalTrack 
+    FinalTrack
 } from '../audio'
 import * as Sprites from '../sprites'
 import * as Engine from '../../engine/engine'
@@ -30,19 +30,19 @@ class Game extends React.Component {
     }
     render() {
         const props = this.props
-        const layoutObj = []
-        props.map.layout
-            .map((row, y) => row.map((cell, x) => {
-                if (cell == 1) {
-                    layoutObj.push({
-                        sprit: Sprites.Tree,
-                        x: x,
-                        y: y
-                    })
-                }
-            }))
+        // const layoutObj = []
+        // props.map.layout
+        //     .map((row, y) => row.map((cell, x) => {
+        //         if (cell == 1) {
+        //             layoutObj.push({
+        //                 sprit: Sprites.Tree,
+        //                 x: x,
+        //                 y: y
+        //             })
+        //         }
+        //     }))
         const gameObjects = [
-            ...layoutObj,
+            // ...layoutObj,
             {
                 sprit: Sprites.Player,
                 x: props.player.position[0],
@@ -64,14 +64,14 @@ class Game extends React.Component {
         if (hasWon) {
             if (this.state.hasSentLastMessage === false) {
                 setTimeout(() => {
-                    this.setState({ hasSentLastMessage: true, stopWalkingForLastMessage : false })
+                    this.setState({ hasSentLastMessage: true, stopWalkingForLastMessage: false })
                     props.updateCaption('Você salvo a tudos seus amigos, volte a casa para comemorar')
                 }, 5000)
             }
         }
 
         if (this.state.stopWalkingForLastMessage == false) {
-            setTimeout(() => { 
+            setTimeout(() => {
                 this.setState({ stopWalkingForLastMessage: true })
                 this.props.celebrate()
             }, 5000)
@@ -128,8 +128,11 @@ class Game extends React.Component {
                     }
                     }
                 />
-                <Board objects={gameObjects} />
+                <Board objects={gameObjects} mapPosition={props.map.position} />
                 <Captions text={props.caption || ""} friends={props.friends} />
+                
+                {/* Experimental */}
+                <button onClick={() => props.experimental()}> Experimental </button>
             </div>
         )
     }
@@ -151,7 +154,10 @@ function mapDispatchToProps(dispatch) {
         },
         celebrate: () => {
             dispatch({ type: "CELEBRATE" })
-        }
+        },
+        experimental: () => {
+            dispatch({ type: "EXPERIMENTAL" })
+        },
     }
 }
 

@@ -33,7 +33,7 @@ export class Board extends React.Component {
     mapFromPng() {
         return <div style={{ position: "absolute" }}>
             <img
-                style={{ width: `${this.props.width * this.props.blockSize}px` }}
+                style={{ width: `${this.props.width * this.props.blockSize}px`, height: `${this.props.height * this.props.blockSize}px`}}
                 src={GameMap.mapPng[this.props.mapPosition[1]][this.props.mapPosition[0]]}>
             </img>
         </div>
@@ -44,7 +44,7 @@ export class Board extends React.Component {
             {
                 [
                     this.terrainLayer(),
-                    // this.mapFromPng(),
+                    this.mapFromPng(),
                     <Layer {...this.props} > </Layer>
                 ]
             }
