@@ -4,6 +4,7 @@
  import ambi_wolf from './tracks/ambi_wolf.mp3'
  import bass_owl from './tracks/bass_owl.mp3'
  import flute_bird from './tracks/flute_bird.mp3'
+ import intro from'./tracks/intro.wav'
  import keys_racoon from './tracks/keys_racoon.mp3'
  import percussion_rabbit from './tracks/percussion_rabbit.mp3'
  import picapau from './tracks/picapau.mp3'
@@ -20,8 +21,8 @@ export class Intro extends React.Component {
 
   render() {
     return (
-        <audio id="intro" autoPlay>
-          <source src={final_track} />
+        <audio id="intro" autoPlay loop>
+          <source src={intro} />
         </audio>
     )
   }

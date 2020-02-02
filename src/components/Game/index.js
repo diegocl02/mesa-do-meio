@@ -5,6 +5,7 @@ import { Captions } from '../captions'
 import Player from '../player'
 import { Introduction } from '../introduction'
 import {
+    Intro,
     Audio,
     RabbitTrack,
     FrogTrack,
@@ -92,7 +93,7 @@ class Game extends React.Component {
             if (this.state.hasSentLastMessage === false) {
                 setTimeout(() => {
                     this.setState({ hasSentLastMessage: true, stopWalkingForLastMessage: false })
-                    props.updateCaption('Você salvo a tudos seus amigos, volte a casa para comemorar')
+                    props.updateCaption("You saved all your friends and restored nature's music. Go celebrate!")
                 }, 5000)
             }
         }
@@ -148,7 +149,7 @@ class Game extends React.Component {
                     alignItems: 'center'
                 }}>
 
-                <Audio />
+                {this.state.gameState == "intro" ? <Intro /> : <Audio />}
                 {props.friends.rabbit.wasSaved ? <RabbitTrack /> : <Audio />}
                 {props.friends.wolf.wasSaved ? <WolfTrack /> : <Audio />}
                 {props.friends.frog.wasSaved ? <FrogTrack /> : <Audio />}

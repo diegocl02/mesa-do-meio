@@ -97,7 +97,7 @@ const initialState = {
             sprit: Sprites.Beaver,
             position: [10, 3],
             map: [1, 1],
-            text: "I miss my dam... and my river... sadboy cry:((",
+            text: "I miss my dam... my river... sadboy cry:((",
             origin: {
                 map: [0, 0],
                 position: [12, 5]
