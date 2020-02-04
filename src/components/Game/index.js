@@ -106,6 +106,10 @@ class Game extends React.Component {
         let caption = props.caption
         if (this.state.gameState == "intro") {
             switch (this.state.introIndex) {
+                case 0: {
+                    caption = 'Use Arrows to move, enter to interact';
+                    break;
+                }
                 case 1: {
                     caption = 'I finally have some time off!';
                     break;
@@ -226,8 +230,6 @@ class Game extends React.Component {
                     text={caption || ""}
                     friends={props.friends}
                     type={"normal"} />
-
-                {/* Experimental */}
 
                 {
                     this.state.gameState == "mini-game"

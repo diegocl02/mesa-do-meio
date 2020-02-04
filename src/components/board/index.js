@@ -14,15 +14,15 @@ export class Board extends React.Component {
     }
 
     terrainLayer() {
-        return <div style={{ position: "absolute" }}>
+        return <div key="terrain" style={{ position: "absolute" }}>
             {
                 Array.from(Array(this.props.height))
                     .map((y, yIndex) => {
-                        return <div className={"board-row"}>
+                        return <div className={"board-row"} key={"board-row-" + yIndex}>
                             {Array.from(Array(this.props.width))
                                 .map((x, xIndex) => {
                                     const Sprit = Sprites.Grass
-                                    return <span><Sprit style={{ width: this.props.blockSize }}></Sprit></span>
+                                    return <span key={"board-cell" + xIndex}><Sprit style={{ width: this.props.blockSize }}></Sprit></span>
                                 })}
                         </div>
                     })
@@ -30,7 +30,7 @@ export class Board extends React.Component {
         </div>
     }
     mapFromPng() {
-        return <div style={{ position: "absolute" }}>
+        return <div key="pngmap" style={{ position: "absolute" }}>
             <img
                 style={{ width: `${this.props.width * this.props.blockSize}px`, height: `${this.props.height * this.props.blockSize}px`}}
                 src={GameMap.mapPng[this.props.mapPosition[1]][this.props.mapPosition[0]]}>
@@ -38,12 +38,12 @@ export class Board extends React.Component {
         </div>
     }
     render() {
-        return <div className={"board"}>
+        return <div className={"board"} key={"board-main"}>
             {
                 [
                     this.terrainLayer(),
                     this.mapFromPng(),
-                    <Layer {...this.props} > </Layer>
+                    <Layer key="elements" {...this.props} > </Layer>
                 ]
             }
         </div>

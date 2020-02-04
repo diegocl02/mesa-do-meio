@@ -174,9 +174,9 @@ export class MiniGame extends React.Component {
         ]
 
         return <div >
-            {this.state.mapa.map((row, y) => <div style={{ display: "flex", flexDirection: "row" }}>
+            {this.state.mapa.map((row, y) => <div key={"row" + y} style={{ display: "flex", flexDirection: "row" }}>
                 {row.map((cell, x) =>
-                    <div style={{
+                    <div key={"row" + x} style={{
                         border: x == this.state.current[0] && y == this.state.current[1]
                             ? `solid 2px ${this.state.isSelected ? `blue` : `red`}`
                             : 'solid 2px gray'

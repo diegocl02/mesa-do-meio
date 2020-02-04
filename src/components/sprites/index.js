@@ -64,10 +64,14 @@ export class Dance extends React.Component{
         super(props)
         this.state = {src: spr_dance}
     }
+    animationTimer
     componentDidMount(){
-        setInterval(() => {
+        this.animationTimer = setInterval(() => {
             this.setState({src: this.state.src === spr_dance ? spr_dance2 : spr_dance})
         }, 500)
+    }
+    componentWillUnmount(){
+        clearInterval(this.animationTimer)
     }
     render (){
         return <img src={this.state.src} style={{...this.props.style}}></img>
@@ -79,10 +83,14 @@ export class Fox extends React.Component{
         super(props)
         this.state = {src: spr_fox}
     }
+    animationTimer
     componentDidMount(){
-        setInterval(() => {
+        this.animationTimer = setInterval(() => {
             this.setState({src: this.state.src === spr_fox ? spr_fox2 : spr_fox})
         }, 500)
+    }
+    componentWillUnmount(){
+        clearInterval(this.animationTimer)
     }
     render (){
         return <img src={this.state.src} style={{...this.props.style}}></img>
@@ -94,10 +102,14 @@ export class Rabbit extends React.Component{
         super(props)
         this.state = {src: spr_rabbit}
     }
+    animationTimer
     componentDidMount(){
-        setInterval(() => {
+        this.animationTimer = setInterval(() => {
             this.setState({src: this.state.src === spr_rabbit ? spr_rabbit2 : spr_rabbit})
         }, 500)
+    }
+    componentWillUnmount(){
+        clearInterval(this.animationTimer)
     }
     render (){
         return <img src={this.state.src} style={{...this.props.style}}></img>
@@ -109,10 +121,14 @@ export class Racoon extends React.Component{
         super(props)
         this.state = {src: spr_raccoon}
     }
+    animationTimer
     componentDidMount(){
-        setInterval(() => {
+        this.animationTimer = setInterval(() => {
             this.setState({src: this.state.src === spr_raccoon ? spr_raccoon2 : spr_raccoon})
         }, 500)
+    }
+    componentWillUnmount(){
+        clearInterval(this.animationTimer)
     }
     render (){
         return <img src={this.state.src} style={{...this.props.style}}></img>
@@ -124,10 +140,14 @@ export class Frog extends React.Component{
         super(props)
         this.state = {src: spr_frog}
     }
+    animationTimer
     componentDidMount(){
-        setInterval(() => {
+        this.animationTimer = setInterval(() => {
             this.setState({src: this.state.src === spr_frog ? spr_frog2 : spr_frog})
         }, 500)
+    }
+    componentWillUnmount(){
+        clearInterval(this.animationTimer)
     }
     render (){
         return <img src={this.state.src} style={{...this.props.style}}></img>
@@ -139,10 +159,14 @@ export class Wolf extends React.Component{
         super(props)
         this.state = {src: spr_wolf}
     }
+    animationTimer
     componentDidMount(){
-        setInterval(() => {
+        this.animationTimer = setInterval(() => {
             this.setState({src: this.state.src === spr_wolf ? spr_wolf2 : spr_wolf})
         }, 500)
+    }
+    componentWillUnmount(){
+        clearInterval(this.animationTimer)
     }
     render (){
         return <img src={this.state.src} style={{...this.props.style}}></img>
@@ -154,10 +178,14 @@ export class Owl extends React.Component{
         super(props)
         this.state = {src: spr_owl}
     }
+    animationTimer
     componentDidMount(){
-        setInterval(() => {
+        this.animationTimer = setInterval(() => {
             this.setState({src: this.state.src === spr_owl ? spr_owl2 : spr_owl})
         }, 500)
+    }
+    componentWillUnmount(){
+        clearInterval(this.animationTimer)
     }
     render (){
         return <img src={this.state.src} style={{...this.props.style}}></img>
@@ -169,10 +197,14 @@ export class Beaver extends React.Component{
         super(props)
         this.state = {src: spr_beaver}
     }
+    animationTimer
     componentDidMount(){
-        setInterval(() => {
+        this.animationTimer = setInterval(() => {
             this.setState({src: this.state.src === spr_beaver ? spr_beaver2 : spr_beaver})
         }, 500)
+    }
+    componentWillUnmount(){
+        clearInterval(this.animationTimer)
     }
     render (){
         return <img src={this.state.src} style={{...this.props.style}}></img>
@@ -184,10 +216,16 @@ export class Hedgehog extends React.Component{
         super(props)
         this.state = {src: spr_hedgehog}
     }
+    animationTimer
+
     componentDidMount(){
-        setInterval(() => {
+        this.animationTimer = setInterval(() => {
             this.setState({src: this.state.src === spr_hedgehog ? spr_hedgehog2 : spr_hedgehog})
         }, 500)
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.animationTimer)
     }
     render (){
         return <img src={this.state.src} style={{...this.props.style}}></img>
@@ -199,10 +237,14 @@ export class Squirrel extends React.Component{
         super(props)
         this.state = {src: spr_squirrel}
     }
+    animationTimer
     componentDidMount(){
-        setInterval(() => {
+        this.animationTimer = setInterval(() => {
             this.setState({src: this.state.src === spr_squirrel ? spr_squirrel2 : spr_squirrel})
         }, 500)
+    }
+    componentWillUnmount(){
+        clearInterval(this.animationTimer)
     }
     render (){
         return <img src={this.state.src} style={{...this.props.style}}></img>

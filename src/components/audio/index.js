@@ -3,7 +3,6 @@
  import acoustic_fox from './tracks/acoustic_fox.mp3'
  import ambi_wolf from './tracks/ambi_wolf.mp3'
  import bass_owl from './tracks/bass_owl.mp3'
- import flute_bird from './tracks/flute_bird.mp3'
  import intro from'./tracks/intro.wav'
  import keys_racoon from './tracks/keys_racoon.mp3'
  import percussion_rabbit from './tracks/percussion_rabbit.mp3'
@@ -12,7 +11,6 @@
  import synthbass_frog from './tracks/synthbass_frog.mp3'
  import trumpet_beaver from './tracks/trumpet_beaver.mp3'
  import together from './tracks/together.mp3'
- import final_track from './tracks/final_track.mp3'
 
 export class Intro extends React.Component {
   componentDidMount() {

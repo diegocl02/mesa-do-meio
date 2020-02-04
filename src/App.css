@@ -9,6 +9,7 @@
 
 .board-row {
   line-height: 0;
+  white-space: nowrap;
 }
 
 .body {
