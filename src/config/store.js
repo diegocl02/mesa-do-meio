@@ -47,7 +47,7 @@ export const initialState = {
                 map: [2, 2],
                 position: [13, 2]
             },
-            wasSaved: true,
+            wasSaved: false,
             src: spr_foxB
         },
         racoon: {
@@ -61,7 +61,7 @@ export const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: true,
+            wasSaved: false,
             src: spr_racoonB
         },
         frog: {
@@ -75,7 +75,7 @@ export const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: true,
+            wasSaved: false,
             src: spr_frogB
         },
         wolf: {
@@ -89,7 +89,7 @@ export const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: true,
+            wasSaved: false,
             src: spr_wolfB
         },
         owl: {
@@ -103,7 +103,7 @@ export const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: true,
+            wasSaved: false,
             src: spr_owlB
         },
         beaver: {
@@ -117,7 +117,7 @@ export const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: true,
+            wasSaved: false,
             src: spr_beaverB
         },
         hedgehog: {
@@ -131,7 +131,7 @@ export const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: true,
+            wasSaved: false,
             src: spr_hedgehogB
         },
         squirrel: {
@@ -145,7 +145,7 @@ export const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: true,
+            wasSaved: false,
             src: spr_squirrelB
         }
     }
