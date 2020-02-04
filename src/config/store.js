@@ -12,31 +12,16 @@ import spr_hedgehogB from '../components/mini-game/img/spr_hedgehogB.png'
 import spr_squirrelB from '../components/mini-game/img/spr_squirrelB.png'
 import spr_beaverB from '../components/mini-game/img/spr_beaverB.png'
 
-const initialState = {
+export const initialState = {
     player: {
         position: [10, 6],
-        friendsSaved: [],
-        onMiniGame: false
+        friendsSaved: []
     },
     map: {
         position: [2, 2],
         layout: GameMap.map[2][2]
     },
     friends: {
-        fox: {
-            key: "fox",
-            name : "Mr. StarFox",
-            sprit: Sprites.Fox,
-            position: [10, 5],
-            map: [3, 5],
-            text: "Don't get too cocky, Star Fox!",
-            origin: {
-                map: [2, 2],
-                position: [13, 4]
-            },
-            wasSaved: false,
-            src: spr_foxB
-        },
         rabbit: {
             key: "rabbit",
             name : "Pablo Coelho",
@@ -51,6 +36,20 @@ const initialState = {
             wasSaved: false,
             src: spr_rabbitB
         },
+        fox: {
+            key: "fox",
+            name : "Mr. StarFox",
+            sprit: Sprites.Fox,
+            position: [14, 3],
+            map: [3, 5],
+            text: "Don't get too cocky, Star Fox!",
+            origin: {
+                map: [2, 2],
+                position: [13, 2]
+            },
+            wasSaved: true,
+            src: spr_foxB
+        },
         racoon: {
             key: "racoon",
             name : "Rocket",
@@ -62,7 +61,7 @@ const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: false,
+            wasSaved: true,
             src: spr_racoonB
         },
         frog: {
@@ -76,7 +75,7 @@ const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: false,
+            wasSaved: true,
             src: spr_frogB
         },
         wolf: {
@@ -90,35 +89,35 @@ const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: false,
+            wasSaved: true,
             src: spr_wolfB
         },
         owl: {
             key: "owl",
             name : "Jano",
             sprit: Sprites.Owl,
-            position: [10, 6],
+            position: [7, 2],
             map: [4, 0],
             text: "I brought you a song, or maybe a letter from h...",
             origin: {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: false,
+            wasSaved: true,
             src: spr_owlB
         },
         beaver: {
             key: "beaver",
             name : "Sneaky",
             sprit: Sprites.Beaver,
-            position: [10, 3],
+            position: [13, 3],
             map: [1, 1],
             text: "I miss my dam... my river... sadboy cry:((",
             origin: {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: false,
+            wasSaved: true,
             src: spr_beaverB
         },
         hedgehog: {
@@ -132,21 +131,21 @@ const initialState = {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: false,
+            wasSaved: true,
             src: spr_hedgehogB
         },
         squirrel: {
             key: "squirrel",
             name : "Alvim",
             sprit: Sprites.Squirrel,
-            position: [10, 6],
+            position: [8, 6],
             map: [0, 3],
             text: "I'm the guy to bring you some music! Did you know I had a band?",
             origin: {
                 map: [0, 0],
                 position: [12, 5]
             },
-            wasSaved: false,
+            wasSaved: true,
             src: spr_squirrelB
         }
     }

@@ -7,16 +7,33 @@ export class MiniGame extends React.Component {
         this.state = {
             current: [0, 0],
             isSelected: false,
-            mapa: [
-                [0, 2, 1],
-                [4, 3, 8],
-                [7, 6, 5]
-            ],
+            mapa: this.generateRandomMap(),
             win: false
         }
     }
     static defaultProps = {
         src: spr_rabbitB
+    }
+
+    generateRandomMap(){
+        let numbers = []
+        let map = []
+
+        for (let i = 0; i < 3; i++){
+            let row = []
+            for(let j = 0; j < 3; j++){
+                while(1) {
+                    let n = Math.floor(Math.random() * Math.floor(9))
+                    if (!numbers.includes(n)) {
+                        numbers.push(n)
+                        row.push(n)
+                        break;
+                    }
+                }
+            }
+            map.push(row)
+        }
+        return map
     }
 
     generateStyle(position) {

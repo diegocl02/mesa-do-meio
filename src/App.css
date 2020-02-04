@@ -56,7 +56,13 @@
   background-color: black;
   color: white;
   border: thin solid white;
-  padding: 20px;
+  padding: 10px 20px;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
 }
 
 @keyframes App-logo-spin {
@@ -71,4 +77,12 @@
 body {
   image-rendering: pixelated;
   background: #323232;
+}
+
+.credits {
+  height: 400px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }

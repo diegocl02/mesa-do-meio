@@ -1,4 +1,6 @@
 import React from 'react'
+import Typist from 'react-typist';
+
 // import ReactTypingEffect from 'react-typing-effect';
 
 // friend: {
@@ -17,10 +19,22 @@ import React from 'react'
 
 export function Captions(props) {
     return <div className={"captions"}>
-        {props.text != ""
-            ? <div className={"captions-border"}>
-                {props.text}
-            </div>
+        {props.text !== ""
+            ? props.type === "effect"
+                ? <Typist
+                    key={props.text}
+                    avgTypingDelay={35}
+                    startDelay={30}
+                    className={"captions-border"}
+                    cursor={{ hideWhenDone: true, show: false }}
+                    onTypingDone={()=> props.onTypeDone()}
+                    >
+                    <span>{props.text}</span>
+                    <Typist.Delay ms={2000} />
+                </Typist>
+                : <div className={"captions-border"}>
+                    {props.text}
+                </div>
             : <div> {Object.keys(props.friends).map(key => props.friends[key]).map(friend => {
                 const Sprite = friend.sprit
                 return <Sprite key={friend.name} style={{

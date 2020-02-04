@@ -1,4 +1,5 @@
 import * as GameMap from '../engine/map'
+import { initialState } from './store'
 
 export const reducer = (state, action) => {
     switch (action.type) {
@@ -31,8 +32,8 @@ export const reducer = (state, action) => {
                     position: [xIndex, yIndex],
                     map: [2, 2]
                 }
-                yIndex = xIndex > 13 ? yIndex + 2 : yIndex
-                xIndex = xIndex > 13 ? 6 : xIndex + 2
+                yIndex = xIndex > 11 ? yIndex + 2 : yIndex
+                xIndex = xIndex > 11 ? yIndex > 8 ? 9 : 6 : xIndex + 2
             })
             return {
                 ...state,
@@ -62,6 +63,8 @@ export const reducer = (state, action) => {
                     friends: newFriends
                 }
             }
+        case "RESET_GAME":
+            return initialState
         default:
             return state
     }

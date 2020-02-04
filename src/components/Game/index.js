@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Board } from '../board'
 import { Captions } from '../captions'
+import { Credits } from '../credits'
 import Player from '../player'
 import { Introduction } from '../introduction'
 import {
@@ -29,7 +30,7 @@ class Game extends React.Component {
         this.state = {
             stopWalkingForLastMessage: true,
             hasSentLastMessage: false,
-            gameState: "intro", // "intro" | "play" | "ending"
+            gameState: "title", // "title" | "intro" | "play" | "ending" | "credits"
             introIndex: 0,
             playerPos: "DOWN"
         }
@@ -51,17 +52,6 @@ class Game extends React.Component {
     }
     render() {
         const props = this.props
-        // const layoutObj = []
-        // props.map.layout
-        //     .map((row, y) => row.map((cell, x) => {
-        //         if (cell == 1) {
-        //             layoutObj.push({
-        //                 sprit: Sprites.Tree,
-        //                 x: x,
-        //                 y: y
-        //             })
-        //         }
-        //     }))
         const hasWon = !(Object.keys(props.friends).map(key => props.friends[key])
             .some(friend => friend.wasSaved == false))
         let spritePlayer = this.state.playerPos == "RIGHT"
@@ -74,7 +64,7 @@ class Game extends React.Component {
 
         const gameObjects = [
             {
-                sprit: hasWon ? Sprites.Dance : spritePlayer,
+                sprit: this.state.gameState === "ending" ? Sprites.Dance : spritePlayer,
                 x: props.player.position[0],
                 y: props.player.position[1]
             },
@@ -94,17 +84,20 @@ class Game extends React.Component {
                 setTimeout(() => {
                     this.setState({ hasSentLastMessage: true, stopWalkingForLastMessage: false })
                     props.updateCaption("You saved all your friends and restored nature's music. Go celebrate!")
-                }, 5000)
+                }, 5500)
             }
         }
-        if (this.state.stopWalkingForLastMessage == false) {
+        if (this.state.hasSentLastMessage == true && this.state.gameState !== "ending" && this.state.gameState !== "credits") {
             setTimeout(() => {
-                this.setState({ stopWalkingForLastMessage: true })
-                this.props.celebrate()
+                props.celebrate()
+                this.setState({ gameState: "ending" })
+                setTimeout(() => {
+                    this.setState({ gameState: "credits" })
+                }, 12000)
             }, 5000)
         }
         let caption = props.caption
-        if (this.state.gameState == "intro") {
+        if (this.state.gameState == "intro" || this.state.gameState == "title") {
             switch (this.state.introIndex) {
                 case 0: {
                     caption = 'Use Arrows to move, enter to interact';
@@ -140,6 +133,8 @@ class Game extends React.Component {
                 }
             }
         }
+        if (this.state.gameState == "ending")
+            caption = 0
 
         return (
             <div
@@ -152,7 +147,7 @@ class Game extends React.Component {
                     alignItems: 'center'
                 }}>
 
-                {this.state.gameState == "intro" ? <Intro /> : <Audio />}
+                {this.state.gameState == "intro" || this.state.gameState == "title" ? <Intro /> : <Audio />}
                 {props.friends.rabbit.wasSaved ? <RabbitTrack /> : <Audio />}
                 {props.friends.wolf.wasSaved ? <WolfTrack /> : <Audio />}
                 {props.friends.frog.wasSaved ? <FrogTrack /> : <Audio />}
@@ -171,6 +166,12 @@ class Game extends React.Component {
                                 this.setState({
                                     playerPos: direction
                                 })
+                            }
+                            if (this.state.gameState == "title") {
+                                if (direction == "RIGHT")
+                                    this.setState({
+                                        introIndex: this.state.introIndex + 1, gameState: "intro"
+                                    })
                             }
                             if (this.state.gameState == "intro" && this.state.introIndex >= 0 && this.state.introIndex < 7) {
                                 if (direction == "RIGHT")
@@ -204,7 +205,6 @@ class Game extends React.Component {
                             else if (Engine.isChangeNewMap(newDirection, props.map.layout, GameMap.map, props.map.position)) {
                                 const newMapPos = Engine.getNewMapPos(newDirection, props.map.layout, GameMap.map, props.map.position)
 
-                                props.updateCaption(0)
                                 props.updatePlayer(Engine.getNewPosOnMap(newDirection, props.map.layout, GameMap.map, props.map.position))
                                 props.updateMap({
                                     position: newMapPos,
@@ -212,7 +212,6 @@ class Game extends React.Component {
                                 })
                             }
                             else if (Engine.isValidNewPosition(newDirection, props.map, Object.keys(props.friends).map(key => props.friends[key]))) {
-                                props.updateCaption(0)
                                 props.updatePlayer(newDirection)
                             }
 
@@ -222,15 +221,25 @@ class Game extends React.Component {
                     : null
                 }
                 {
-                    this.state.gameState == "intro"
+                    this.state.gameState === "intro" || this.state.gameState === "title"
                         ? <Introduction currentSlide={this.state.introIndex} ></Introduction>
-                        : <Board objects={gameObjects} mapPosition={props.map.position} />
+                        : this.state.gameState != "credits"
+                            ? <Board objects={gameObjects} mapPosition={props.map.position} />
+                            : null
                 }
-                <Captions
-                    text={caption || ""}
-                    friends={props.friends}
-                    type={"normal"} />
-
+                {
+                    this.state.gameState != "credits"
+                        ? <Captions
+                            text={caption || ""}
+                            friends={props.friends}
+                            type={this.state.gameState == "title" ? "normal" : "effect"}
+                            onTypeDone={() => {
+                                if (this.state.gameState != "mini-game")
+                                    props.updateCaption(0)
+                            }}
+                        />
+                        : null
+                }
                 {
                     this.state.gameState == "mini-game"
                         ? <div style={{ position: "absolute", top: "60px" }}>
@@ -242,6 +251,20 @@ class Game extends React.Component {
                                 setTimeout(() => this.friendToHome(possibleFriendSaved), 2000)
                             }}></MiniGame>
                         </div>
+                        : null
+                }
+                {
+                    this.state.gameState == "credits"
+                        ? <Credits playAgain={() => {
+                            this.setState({
+                                stopWalkingForLastMessage: true,
+                                hasSentLastMessage: false,
+                                gameState: "title", 
+                                introIndex: 0,
+                                playerPos: "DOWN"
+                            })
+                            props.resetGame()
+                        }} />
                         : null
                 }
             </div>
@@ -268,6 +291,9 @@ function mapDispatchToProps(dispatch) {
         },
         experimental: () => {
             dispatch({ type: "EXPERIMENTAL" })
+        },
+        resetGame: () => {
+            dispatch({ type: "RESET_GAME" })
         },
     }
 }
