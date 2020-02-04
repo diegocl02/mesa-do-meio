@@ -86,3 +86,34 @@ body {
   flex-direction: column;
   justify-content: flex-start;
 }
+
+.commands {
+  opacity: 0.8;
+  position: absolute;
+  top: 200px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  height: 40px;
+  min-width: 40px;
+  padding: 20px;
+  border: thin solid white;
+  color: white;
+  margin: 5px;
+  cursor: default;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.button-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-right: 250px;
+}

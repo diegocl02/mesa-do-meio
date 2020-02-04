@@ -32,7 +32,8 @@ class Game extends React.Component {
             hasSentLastMessage: false,
             gameState: "title", // "title" | "intro" | "play" | "ending" | "credits"
             introIndex: 0,
-            playerPos: "DOWN"
+            playerPos: "DOWN",
+            width : window.innerWidth
         }
     }
     friendToHome(friend) {
@@ -135,7 +136,7 @@ class Game extends React.Component {
         }
         if (this.state.gameState == "ending")
             caption = 0
-
+        console.log('state', this.state)
         return (
             <div
                 style={{
@@ -158,6 +159,56 @@ class Game extends React.Component {
                 {props.friends.hedgehog.wasSaved ? <HedgehogTrack /> : <Audio />}
                 {props.friends.squirrel.wasSaved ? <SquirrelTrack /> : <Audio />}
                 {hasWon ? <FinalTrack /> : <Audio />}
+
+                {
+                    this.state.gameState === "intro" || this.state.gameState === "title"
+                        ? <Introduction currentSlide={this.state.introIndex} ></Introduction>
+                        : this.state.gameState != "credits"
+                            ? <Board objects={gameObjects} mapPosition={props.map.position} />
+                            : null
+                }
+                {
+                    this.state.gameState != "credits"
+                        ? <Captions
+                            text={caption || ""}
+                            friends={props.friends}
+                            type={this.state.gameState == "title" ? "normal" : "effect"}
+                            onTypeDone={() => {
+                                if (this.state.gameState != "mini-game")
+                                    props.updateCaption(0)
+                            }}
+                        />
+                        : null
+                }
+                {
+                    this.state.gameState == "mini-game"
+                        ? <div style={{ position: "absolute", top: "60px", width: "600px" }}>
+                            <MiniGame friend={this.state.friend} win={() => {
+                                let possibleFriendSaved = { ...this.state.friend, wasSaved: true }
+                                props.updateFriend(possibleFriendSaved)
+                                props.updateCaption(possibleFriendSaved.name + ': ' + possibleFriendSaved.text)
+                                setTimeout(() => this.setState({ gameState: "playing" }), 1000)
+                                setTimeout(() => this.friendToHome(possibleFriendSaved), 2000)
+                            }}
+                            width={this.state.width}></MiniGame>
+                        </div>
+                        : null
+                }
+                {
+                    this.state.gameState == "credits"
+                        ? <Credits playAgain={() => {
+                            this.setState({
+                                stopWalkingForLastMessage: true,
+                                hasSentLastMessage: false,
+                                gameState: "title",
+                                introIndex: 0,
+                                playerPos: "DOWN"
+                            })
+                            props.resetGame()
+                        }} />
+                        : null
+                }
+
                 {this.state.gameState !== "mini-game" ? <Player
                     position={props.player.position}
                     handleKeyPressed={
@@ -219,53 +270,6 @@ class Game extends React.Component {
                     }}
                 />
                     : null
-                }
-                {
-                    this.state.gameState === "intro" || this.state.gameState === "title"
-                        ? <Introduction currentSlide={this.state.introIndex} ></Introduction>
-                        : this.state.gameState != "credits"
-                            ? <Board objects={gameObjects} mapPosition={props.map.position} />
-                            : null
-                }
-                {
-                    this.state.gameState != "credits"
-                        ? <Captions
-                            text={caption || ""}
-                            friends={props.friends}
-                            type={this.state.gameState == "title" ? "normal" : "effect"}
-                            onTypeDone={() => {
-                                if (this.state.gameState != "mini-game")
-                                    props.updateCaption(0)
-                            }}
-                        />
-                        : null
-                }
-                {
-                    this.state.gameState == "mini-game"
-                        ? <div style={{ position: "absolute", top: "60px" }}>
-                            <MiniGame friend={this.state.friend} win={() => {
-                                let possibleFriendSaved = { ...this.state.friend, wasSaved: true }
-                                props.updateFriend(possibleFriendSaved)
-                                props.updateCaption(possibleFriendSaved.name + ': ' + possibleFriendSaved.text)
-                                setTimeout(() => this.setState({ gameState: "playing" }), 1000)
-                                setTimeout(() => this.friendToHome(possibleFriendSaved), 2000)
-                            }}></MiniGame>
-                        </div>
-                        : null
-                }
-                {
-                    this.state.gameState == "credits"
-                        ? <Credits playAgain={() => {
-                            this.setState({
-                                stopWalkingForLastMessage: true,
-                                hasSentLastMessage: false,
-                                gameState: "title", 
-                                introIndex: 0,
-                                playerPos: "DOWN"
-                            })
-                            props.resetGame()
-                        }} />
-                        : null
                 }
             </div>
         )

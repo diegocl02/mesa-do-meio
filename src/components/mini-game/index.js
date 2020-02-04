@@ -12,17 +12,18 @@ export class MiniGame extends React.Component {
         }
     }
     static defaultProps = {
-        src: spr_rabbitB
+        src: spr_rabbitB,
+        width : 600
     }
 
-    generateRandomMap(){
+    generateRandomMap() {
         let numbers = []
         let map = []
 
-        for (let i = 0; i < 3; i++){
+        for (let i = 0; i < 3; i++) {
             let row = []
-            for(let j = 0; j < 3; j++){
-                while(1) {
+            for (let j = 0; j < 3; j++) {
+                while (1) {
                     let n = Math.floor(Math.random() * Math.floor(9))
                     if (!numbers.includes(n)) {
                         numbers.push(n)
@@ -84,7 +85,7 @@ export class MiniGame extends React.Component {
                                     mapa: newMap,
                                     win: isWin
                                 })
-                                if (isWin){
+                                if (isWin) {
                                     this.props.win()
                                 }
                             }
@@ -106,7 +107,7 @@ export class MiniGame extends React.Component {
                                 mapa: newMap,
                                 win: isWin
                             })
-                            if (isWin){
+                            if (isWin) {
                                 this.props.win()
                             }
                         }
@@ -128,7 +129,7 @@ export class MiniGame extends React.Component {
                                 mapa: newMap,
                                 win: isWin
                             })
-                            if (isWin){
+                            if (isWin) {
                                 this.props.win()
                             }
                         }
@@ -151,7 +152,7 @@ export class MiniGame extends React.Component {
                                 mapa: newMap,
                                 win: isWin
                             })
-                            if (isWin){
+                            if (isWin) {
                                 this.props.win()
                             }
                         }
@@ -178,6 +179,8 @@ export class MiniGame extends React.Component {
     }
 
     render() {
+        let posx = this.state.current[0]
+        let posy = this.state.current[1]
         const arrayOfTiles = [
             <div style={this.generateStyle([0, 0])}></div>,
             <div style={this.generateStyle([1, 0])}></div>,
@@ -189,9 +192,10 @@ export class MiniGame extends React.Component {
             <div style={this.generateStyle([1, 2])}></div>,
             <div style={this.generateStyle([2, 2])}></div>,
         ]
+        console.log(this.state)
 
         return <div >
-            {this.state.mapa.map((row, y) => <div key={"row" + y} style={{ display: "flex", flexDirection: "row" }}>
+            {this.state.mapa.map((row, y) => <div key={"row" + y} style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
                 {row.map((cell, x) =>
                     <div key={"row" + x} style={{
                         border: x == this.state.current[0] && y == this.state.current[1]
@@ -202,6 +206,108 @@ export class MiniGame extends React.Component {
                     </div>
                 )}
             </div>)}
+
+            {this.props.width < 800
+                ? <div key={"controls"}>
+                    {
+                        <div className={"commands"} style={{top: "150px"}}>
+                            <div key="box" className={"button-box"}>
+
+                                <div key="left" className={"button left"} onClick={() => {
+                                    if (this.state.current[0] > 0) {
+                                        this.setState({ current: [posx - 1, posy] })
+                                        if (this.state.isSelected) {
+                                            let newMap = [...this.state.mapa]
+                                            let tmp = newMap[posy][posx]
+
+                                            newMap[posy][posx] = newMap[posy][posx - 1]
+                                            newMap[posy][posx - 1] = tmp
+                                            let isWin = this.checkWinner(newMap)
+                                            this.setState({
+                                                mapa: newMap,
+                                                win: isWin
+                                            })
+                                            if (isWin) {
+                                                this.props.win()
+                                            }
+                                        }
+                                    }
+                                }}> {`◄`} </div>
+
+                                <div key="col" style={{ display: "flex", flexDirection: "column" }}>
+                                    <div key="up" className={"button up"} onClick={() => {
+                                        if (this.state.current[1] > 0) {
+                                            this.setState({ current: [this.state.current[0], this.state.current[1] - 1] })
+                                            if (this.state.isSelected) {
+                                                let newMap = [...this.state.mapa]
+                                                let tmp = newMap[posy][posx]
+
+                                                newMap[posy][posx] = newMap[posy - 1][posx]
+                                                newMap[posy - 1][posx] = tmp
+                                                let isWin = this.checkWinner(newMap)
+                                                this.setState({
+                                                    mapa: newMap,
+                                                    win: isWin
+                                                })
+                                                if (isWin) {
+                                                    this.props.win()
+                                                }
+                                            }
+                                        }
+                                    }}> {`▲`} </div>
+                                    <div key="down" className={"button down"} onClick={() => {
+                                        if (this.state.current[1] < 2) {
+                                            this.setState({ current: [this.state.current[0], this.state.current[1] + 1] })
+                                            if (this.state.isSelected) {
+                                                let newMap = [...this.state.mapa]
+                                                let tmp = newMap[posy][posx]
+
+                                                newMap[posy][posx] = newMap[posy + 1][posx]
+                                                newMap[posy + 1][posx] = tmp
+                                                let isWin = this.checkWinner(newMap)
+
+                                                this.setState({
+                                                    mapa: newMap,
+                                                    win: isWin
+                                                })
+                                                if (isWin) {
+                                                    this.props.win()
+                                                }
+                                            }
+                                        }
+                                    }}> {`▼`} </div>
+
+                                </div>
+                                <div key="ri" className={"button right"} onClick={() => {
+                                    if (this.state.current[0] < 2) {
+                                        this.setState({ current: [this.state.current[0] + 1, this.state.current[1]] })
+                                        if (this.state.isSelected) {
+                                            let newMap = [...this.state.mapa]
+                                            let tmp = newMap[posy][posx]
+
+                                            newMap[posy][posx] = newMap[posy][posx + 1]
+                                            newMap[posy][posx + 1] = tmp
+                                            let isWin = this.checkWinner(newMap)
+                                            this.setState({
+                                                mapa: newMap,
+                                                win: isWin
+                                            })
+                                            if (isWin) {
+                                                this.props.win()
+                                            }
+                                        }
+                                    }
+                                }}> {`►`} </div>
+                            </div>
+
+                            <div key="ent" className={"button enter"} onClick={() => {
+                                this.setState({ isSelected: this.state.isSelected ? false : true })
+                            }}> Enter </div>
+                        </div>
+                    }
+                </div>
+                : null
+            }
         </div>
     }
 
